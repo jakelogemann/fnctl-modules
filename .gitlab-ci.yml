@@ -1,0 +1,14 @@
+variables:
+
+image:
+  name: "registry.gitlab.com/fnctl/nix/docker-image/base:master"
+
+stages:
+  - init
+  - fmt
+  - test
+
+"Validate Syntax":
+  stage: fmt
+  script: "/bin/sh -e /scripts/check-nix-syntax.sh"
+
