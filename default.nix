@@ -7,6 +7,7 @@
     /home/jake/fnctl/nix/functions/nixos.nix
 
     ./options
+    ./base
     ./networking
     ./programs
 

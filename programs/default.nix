@@ -1,9 +1,26 @@
-{ config, lib, options, pkgs, ... }: {
+{ config, lib, options, pkgs, ... }: with lib;
+
+let
+  isEnabled = with config.fnctl2; (enable);
+
+in { 
+
   imports = [
-
-    ./git.nix
-    ./tmux.nix
     ./fish.nix
-
+    ./git.nix
+    ./neovim.nix
+    ./tmux.nix
   ];
+
+  config = mkIf isEnabled {
+
+    programs.mtr.enable = true;
+
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+
+  };
 }
+

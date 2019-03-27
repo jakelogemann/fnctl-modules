@@ -17,4 +17,8 @@ with pkgs.fnctlFunc;
     enable = mkEnabledOption "Enable opinionated system-wide fish config.";
   };
 
+  neovim = {
+    enable = mkEnabledOption "Enable opinionated system-wide neovim config.";
+  };
+
 }; }
