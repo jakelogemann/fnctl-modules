@@ -5,9 +5,20 @@ let
   joinLines = concatStringsSep "\n";
   linesToString = concatStringsSep "\\n";
 
-  aliasesAsAbbrs = (joinLines (lib.mapAttrsToList (
-    n: v: "abbr -a -g ${n} ${v}"
-  ) config.environment.shellAliases));
+  fish = rec {
+    mkGlobalAlias = name: command: "abbr -a -g -- ${name} ${command}";
+    mkGlobalAliasFromAttrs = as: joinLines (lib.mapAttrsToList mkGlobalAlias as);
+    installFisher = ''
+      if not functions -q fisher
+        set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+        curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
+        touch $XDG_CONFIG_HOME/fish/fishfile
+        fish -c fisher
+      end
+    '';
+  };
+
+  aliasesAsAbbrs = fish.mkGlobalAliasFromAttrs config.environment.shellAliases;
 
 in lib.mkIf isEnabled {
 
@@ -18,28 +29,23 @@ in lib.mkIf isEnabled {
   programs.fish = {
     enable = true;
 
-    interactiveShellInit = mkForce (joinLines [
+    shellInit = joinLines [
+      "set -U fish_greeting"
       "bind \\cw backward-kill-word    #Make Ctrl-W work like bash."
-      "abbr -a -g pass gopass"
-      "abbr -a -g rebuild sudo fnctl-rebuild"
-      "abbr -a -g upgrade sudo fnctl-upgrade"
-      "abbr -a -g repl sudo fnctl-repl"
-      "abbr -a -g nrbs sudo nixos-rebuild --show-trace switch"
-      "abbr -a -g nrbt sudo nixos-rebuild --show-trace test"
-      "abbr -a -g nrbb sudo nixos-rebuild --show-trace boot"
-      aliasesAsAbbrs
-    ]);
-
-    shellInit = ''
-    set -U fish_greeting
-
-    if not functions -q fisher
-      set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
-      curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
-      touch $XDG_CONFIG_HOME/fish/fishfile
-      fish -c fisher
-    end
-    '';
+      (fish.mkGlobalAlias "pass" "gopass")
+      (fish.mkGlobalAlias "rebuild-system" "sudo fnctl-rebuild")
+      (fish.mkGlobalAlias "upgrade-system" "sudo fnctl-upgrade")
+      (fish.mkGlobalAlias "update-system"  "sudo fnctl-update")
+      (fish.mkGlobalAlias "repl"           "sudo fnctl-repl")
+      (fish.mkGlobalAlias "nrbs"           "sudo nixos-rebuild --show-trace switch")
+      (fish.mkGlobalAlias "nrbt"           "sudo nixos-rebuild --show-trace test")
+      (fish.mkGlobalAlias "nrbb"           "sudo nixos-rebuild --show-trace boot")
+      (fish.mkGlobalAlias "nrbs"           "sudo nixos-rebuild --show-trace switch")
+      (fish.mkGlobalAlias "ns"             "nix-shell")
+      (fish.mkGlobalAlias "nsp"            "nix-shell --pure")
+      (fish.mkGlobalAlias "nrepl"          "nix repl")
+      fish.installFisher
+    ];
   };
 }
 
