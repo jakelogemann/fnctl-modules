@@ -35,14 +35,15 @@ in lib.mkIf isEnabled {
 
     shellInit = joinLines [
       "set -U fish_greeting"
+      "set -g NVIM_LISTEN_ADDRESS ~/.local/share/nvim/current.socket"
       (fish.mkGlobalMap "\\cw" "backward-kill-word") #Make Ctrl-W work like bash.
       (fish.mkGlobalMap "\\cj" "down-or-search")
       (fish.mkGlobalMap "\\ck" "up-or-search")
       (fish.mkGlobalMap "\\cl" "execute")
       (fish.mkGlobalMap "\\ch" "backward-kill-line")
       (fish.mkGlobalAlias "pass" "gopass")
-      (fish.mkGlobalAlias "vim"  "nvim")
-      (fish.mkGlobalAlias "vi"   "nvim")
+      (fish.mkGlobalAlias "vim"  "nvr -s")
+      (fish.mkGlobalAlias "vi"   "nvr -s")
       (fish.mkGlobalAlias "nrbs" "sudo nixos-rebuild --show-trace switch")
       (fish.mkGlobalAlias "nrbt" "sudo nixos-rebuild --show-trace test")
       (fish.mkGlobalAlias "nrbb" "sudo nixos-rebuild --show-trace boot")
