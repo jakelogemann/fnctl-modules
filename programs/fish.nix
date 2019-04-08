@@ -16,6 +16,10 @@ let
         fish -c fisher
       end
     '';
+    mkGlobalMap = key: cmd: ''
+      bind ${key} ${cmd}
+      bind -M insert ${key} ${cmd}
+    '';
   };
 
   aliasesAsAbbrs = fish.mkGlobalAliasFromAttrs config.environment.shellAliases;
@@ -31,19 +35,20 @@ in lib.mkIf isEnabled {
 
     shellInit = joinLines [
       "set -U fish_greeting"
-      "bind \\cw backward-kill-word    #Make Ctrl-W work like bash."
+      (fish.mkGlobalMap "\\cw" "backward-kill-word") #Make Ctrl-W work like bash.
+      (fish.mkGlobalMap "\\cj" "down-or-search")
+      (fish.mkGlobalMap "\\ck" "up-or-search")
+      (fish.mkGlobalMap "\\cl" "execute")
+      (fish.mkGlobalMap "\\ch" "backward-kill-line")
       (fish.mkGlobalAlias "pass" "gopass")
-      (fish.mkGlobalAlias "rebuild-system" "sudo fnctl-rebuild")
-      (fish.mkGlobalAlias "upgrade-system" "sudo fnctl-upgrade")
-      (fish.mkGlobalAlias "update-system"  "sudo fnctl-update")
-      (fish.mkGlobalAlias "repl"           "sudo fnctl-repl")
-      (fish.mkGlobalAlias "nrbs"           "sudo nixos-rebuild --show-trace switch")
-      (fish.mkGlobalAlias "nrbt"           "sudo nixos-rebuild --show-trace test")
-      (fish.mkGlobalAlias "nrbb"           "sudo nixos-rebuild --show-trace boot")
-      (fish.mkGlobalAlias "nrbs"           "sudo nixos-rebuild --show-trace switch")
-      (fish.mkGlobalAlias "ns"             "nix-shell")
-      (fish.mkGlobalAlias "nsp"            "nix-shell --pure")
-      (fish.mkGlobalAlias "nrepl"          "nix repl")
+      (fish.mkGlobalAlias "vim"  "nvim")
+      (fish.mkGlobalAlias "vi"   "nvim")
+      (fish.mkGlobalAlias "nrbs" "sudo nixos-rebuild --show-trace switch")
+      (fish.mkGlobalAlias "nrbt" "sudo nixos-rebuild --show-trace test")
+      (fish.mkGlobalAlias "nrbb" "sudo nixos-rebuild --show-trace boot")
+      (fish.mkGlobalAlias "nrbs" "sudo nixos-rebuild --show-trace switch")
+      (fish.mkGlobalAlias "ns"   "nix-shell ./shell.nix")
+      (fish.mkGlobalAlias "nsp"  "nix-shell --pure ./shell.nix")
       fish.installFisher
     ];
   };
