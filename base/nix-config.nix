@@ -5,6 +5,14 @@ lib.mkIf config.fnctl2.enable {
   environment.pathsToLink = ["/share"];
   nixpkgs.config.allowUnfree = true;
 
+  documentation = {
+    enable = true;
+    man.enable = true;
+    info.enable = true;
+    dev.enable = true;
+    doc.enable = true;
+  };
+
   nix = let
     nix-plugins = pkgs.nix-plugins.override { nix = config.nix.package; };
     extra-builtins-lib = "${nix-plugins}/lib/nix/plugins/libnix-extra-builtins.so";

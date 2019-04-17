@@ -1,5 +1,6 @@
-{ config, lib, options, pkgs, ... }:
-{ options.fnctl2 = with lib; {
+{ config, lib, options, pkgs, ... }: with lib; {
+
+  options.fnctl2 = {
     enable = mkEnableOption "Enable the FnCtl modules.";
   };
 
