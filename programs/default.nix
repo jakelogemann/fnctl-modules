@@ -3,13 +3,14 @@
 let
   isEnabled = with config.fnctl2; (enable);
 
-in { 
+in {
 
   imports = [
     ./fish.nix
     ./git.nix
     ./neovim.nix
     ./tmux.nix
+    ./zsh.nix
   ];
 
   config = mkIf isEnabled {

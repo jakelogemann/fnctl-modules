@@ -1,7 +1,8 @@
 
 { config, lib, pkgs, ... }:
 let
-  enabled = config.fnctl2.enable; 
+  enabled = config.fnctl2.enable;
+
 in with lib; {
   config = lib.mkIf enabled {
 
@@ -38,9 +39,9 @@ in with lib; {
 
     ## Prevent SSH Brute Force Attacks
     services.sshguard = {
-      enable = false;
+      enable           = false;
       attack_threshold = 30;
-      whitelist = [ ];
+      whitelist        = [ ];
     };
 
   };

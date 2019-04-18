@@ -1,5 +1,6 @@
-{ config, lib, pkgs, ... }: 
-{ boot.kernel.sysctl = {
+{ config, lib, pkgs, ... }:
+{
+  boot.kernel.sysctl = {
 
     # Increase max socket connections to 100k (default 128).
     "net.core.somaxconn"            = 100000;
@@ -52,8 +53,8 @@
     "net.ipv4.tcp_fin_timeout" = 10;
 
     # Adjust TCP Keep Alive
-    "net.ipv4.tcp_keepalive_time"  = 60;
-    "net.ipv4.tcp_keepalive_intvl" = 10;
+    "net.ipv4.tcp_keepalive_time"   = 60;
+    "net.ipv4.tcp_keepalive_intvl"  = 10;
     "net.ipv4.tcp_keepalive_probes" = 6;
 
     # The longer the MTU the better for performance, but the worse for
@@ -69,9 +70,20 @@
 
     # Only accept packets we know the reverse path of is correct.
     "net.ipv4.conf.default.rp_filter" = null;
-    "net.ipv4.conf.all.rp_filter" = null;
+    "net.ipv4.conf.all.rp_filter"     = null;
 
     # Allow saves to occur even if memory is full.
     "vm.overcommit_memory" = 1;
 
-  }; }
+    # Increase the number of inotify watches. Helps when monitoring a large
+    # directory with cloud sync services. The setting will depend on how much RAM
+    # is on the system. While 524288 is the maximum number of files that can be
+    # watched, in an environment that is particularly memory constrained, a lower
+    # number may be preferred. Each file watch takes up 540 bytes (32-bit) or
+    # ~1kB (64-bit), so assuming that all 524288 watches are consumed that
+    # results in an upper bound of around 256MB (32-bit) or 512MB (64-bit).
+    "fs.inotify.max_user_watches"   = 1048576;
+    "fs.inotify.max_user_instances" = 1024;
+    "fs.inotify.max_queued_events"  = 32768;
+  };
+}
