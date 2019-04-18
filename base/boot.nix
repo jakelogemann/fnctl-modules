@@ -62,9 +62,6 @@ in {
   # boot.kernelPackages = lib.mkForce pkgs.linuxPackages_4_20;
     boot.kernelModules = staticModules;
 
-    # Enable setting font as early as possible (in initrd).
-    # boot.earlyVConsoleSetup = true;
-
     /* Disables webcam.
     * TODO: Document this. */
     boot.blacklistedKernelModules = [ "uvcvideo" ];
