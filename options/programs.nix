@@ -1,4 +1,4 @@
-{ config, lib, options, pkgs, ... }: 
+{ config, lib, options, pkgs, ... }:
 
 with lib;
 with pkgs.fnctlFunc;
@@ -19,6 +19,10 @@ with pkgs.fnctlFunc;
 
   neovim = {
     enable = mkEnabledOption "Enable opinionated system-wide neovim config.";
+  };
+
+  zsh = {
+    enable = mkEnabledOption "Enable opinionated system-wide zsh config.";
   };
 
 }; }
