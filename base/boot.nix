@@ -63,7 +63,7 @@ in {
     boot.kernelModules = staticModules;
 
     # Enable setting font as early as possible (in initrd).
-    boot.earlyVConsoleSetup = true;
+    # boot.earlyVConsoleSetup = true;
 
     /* Disables webcam.
     * TODO: Document this. */
