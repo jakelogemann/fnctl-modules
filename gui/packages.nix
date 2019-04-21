@@ -20,11 +20,9 @@
     /* Mail Reader(s)
     * TODO: This should be parameterized. */
     thunderbird /* <3 Mozilla <3 */
-    astroid     /* modern email client */
 
     /* Instant Messaging Client(s)
     * TODO: This should be parameterized. */
-    gnome3.polari   /* Modern IRC Client */  /* Modern IRC Client */
     (pidgin-with-plugins.override {
       plugins = [
         purple-plugin-pack

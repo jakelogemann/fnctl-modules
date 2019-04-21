@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }: with lib; 
 { config = mkIf (with config.fnctl2; enable && gui.enable) {
-
-    services.xserver = {
+  services = { 
+    xserver = {
       enable               = mkForce true;
       autorun              = mkForce true;
 
@@ -26,11 +26,22 @@
         };
       };
     };
+  };
 
-    services.unclutter = {
-      enable = true;
-      keystroke = true;
-    };
+  environment.systemPackages = with pkgs; [
+    arandr  /* Minimal X11 display conf tool */
+    maim scrot  /* Minimal screenshot util */
 
-    services.packagekit.enable = false;
+    /* Standard X Desktop Utils */
+    xdg_utils
+    xdg-user-dirs 
+    slock                 /* Simple/Screen Lock */
+    desktop-file-utils
+    xsel xclip            /* Clipboards */
+    xdo xdotool wmctrl    /* X11 Automation Tools */
+
+    /* Rofi & Friends */
+    dmenu rofi rofi-menugen rofi-pass rofi-systemd
+  ];
+
 }; }
