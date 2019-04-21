@@ -5,12 +5,6 @@
     /* Disables Gnome's package installer (broken?). */
     packagekit.enable = false;
 
-    /* Automatically hide the mouse cursor after being idle. */
-    unclutter = {
-      enable = true;
-      keystroke = true;
-    };
-
     xserver.desktopManager.gnome3 = mkForce {
       enable = true;
       extraGSettingsOverrides = ''

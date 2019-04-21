@@ -4,5 +4,6 @@
   ./gnome.nix
   ./xserver.nix
   ./packages.nix
+  ./extra-services.nix
 ]; }
 
