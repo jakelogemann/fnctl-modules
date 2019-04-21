@@ -9,6 +9,7 @@
 
     ./options
     ./base
+    ./gui
     ./networking
     ./programs
 

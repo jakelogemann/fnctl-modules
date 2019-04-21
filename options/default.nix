@@ -7,6 +7,7 @@
   imports = [
     ./networking.nix
     ./programs.nix
+    ./gui.nix
   ];
 
 }
