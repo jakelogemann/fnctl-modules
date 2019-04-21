@@ -1,12 +1,24 @@
-{ config, pkgs, lib, ... }: with lib; 
+{ config, pkgs, lib, ... }: with lib;
+
+let
+  gnomeExts = (with pkgs.gnomeExtensions; [
+    caffeine    /* Toggle screenlock for reading */
+    impatience  /* Speeds up animations. */
+  ]);
+
+in
 { config = mkIf (with config.fnctl2; enable && gui.enable) {
 
   services = {
     /* Disables Gnome's package installer (broken?). */
     packagekit.enable = false;
 
+    /* Add gnome extensions to dbus so it can be discovered */
+    dbus.packages = gnomeExts;
+
     xserver.desktopManager.gnome3 = mkForce {
       enable = true;
+      sessionPath = gnomeExts;
       extraGSettingsOverrides = ''
 
         [org/gnome/settings-daemon/plugins/xsettings]
@@ -167,13 +179,13 @@
       evolution-data-server.enable = lib.mkForce false;  # services for storing address books and calendars
       gnome-disks.enable           = true;   # UDisks2 graphical front-end
       gnome-documents.enable       = false;  # document manager
-      /* gnome-keyring.enable         = true;   # credential store   */
+      gnome-keyring.enable         = true;   # credential store
       gnome-online-accounts.enable = true;   # single sign-on framework online accounts
       gnome-online-miners.enable   = false;  # service that crawls through user's online content
       gnome-terminal-server.enable = false;  # service used for gnome-terminal
       gnome-user-share.enable      = false;  # share public folder on network
       gpaste.enable                = true;   # clipboard manager
-      /* gvfs.enable               = true;   # userspace virtual filesystem support library  */
+      gvfs.enable                  = true;   # userspace virtual filesystem support library
       seahorse.enable              = true;  # credential manager search
       sushi.enable                 = true;   # quick previewer for nautilus
       tracker-miners.enable        = false;  # file search indexing service
@@ -199,8 +211,13 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [
-      gnome3.gnome-backgrounds
+    systemPackages = with pkgs.gnome3; [
+      gnome-backgrounds
+      sushi         /* Lightweight file previewer */
+      dconf-editor  /* Advanced deskto config editor/viewer. */
+      totem         /* Movie player for Gnome based on GStreamer */
+      vinagre vino  /* Remote desktop viewer/server */
+      zenity        /* graphical dialog prompts */
     ];
 
     /* Don't install unnecessary gnome3 packages */
@@ -223,11 +240,8 @@
       gnome-user-docs
       gnome-user-share
       gnome-weather
-      totem
       tracker
       tracker-miners
-      vinagre
-      vino
       yelp
     ]);
   };
