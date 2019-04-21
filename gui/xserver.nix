@@ -2,8 +2,11 @@
 { config = mkIf (with config.fnctl2; enable && gui.enable) {
   services = { 
     xserver = {
-      enable               = mkForce true;
-      autorun              = mkForce true;
+      enable                = mkForce true;
+      autorun               = mkForce true;
+      exportConfiguration   = mkForce true;
+      startDbusSession      = mkForce true;
+      updateDbusEnvironment = mkForce true;
 
       layout               = "us";
       xkbOptions           = "ctrl:nocaps,altwin:swap_lalt_lwin";
