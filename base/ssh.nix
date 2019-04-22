@@ -10,7 +10,7 @@ in with lib; {
     hardware.u2f.enable             = mkForce true;
     security.pam.enableSSHAgentAuth = mkForce true;
     security.pam.enableEcryptfs     = mkForce true;
-    security.pam.u2f.enable         = mkForce true;
+    # security.pam.u2f.enable         = mkForce true;
     security.pam.usb.enable         = mkForce false;
 
     # Enable SSH recovery for failed boot.

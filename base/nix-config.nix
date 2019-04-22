@@ -31,7 +31,7 @@ lib.mkIf config.fnctl2.enable {
     gc = {
       automatic = true;
       dates     = "03:15";
-      options   = "--delete-older-than 7d";
+      options   = "--delete-older-than 30d";
     };
 
     sshServe = {

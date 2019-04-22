@@ -4,7 +4,8 @@
 , pkgs    ? nixos.pkgs
 , lib     ? pkgs.lib
 , ... }: { imports = [
-    /home/jake/fnctl/nix/functions/nixos.nix
+    # clone the fnctl functions repo to this repo's parent directory
+    ../functions/nixos.nix
 
     ./options
     ./base
