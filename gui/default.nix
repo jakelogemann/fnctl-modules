@@ -8,6 +8,7 @@
   ./gnome-dconf.nix
   ./gnome-app-items.nix
   ./gnome-app-folders.nix
+  ./xdg-mimetypes.nix
   ./gnome.nix
   ./packages.nix
   ./xserver.nix

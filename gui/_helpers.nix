@@ -4,6 +4,9 @@ rec {
   isEmptyList = v: (isList v && builtins.length v == 0);
   boolToString = v: (if v then "true" else "false");
 
+  setAttrsToVal = val: attrNames: 
+    listToAttrs (map (li: nameValuePair li val) attrNames);
+
   /* Formats a given value to be a valid entry in GSettings. */
   fmtDconfVal = v:
   if isBool v then (boolToString v)

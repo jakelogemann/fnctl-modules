@@ -1,11 +1,15 @@
 { config, pkgs, lib, ... }: with lib;
 let
+  inherit (config.fnctl2) enable gui;
   iconDir = "${pkgs.arc-icon-theme}/share/icons/Arc";
   # FIXME: Dont hardcode this...
   termCmd = "${pkgs.alacritty}/bin/alacritty";
 
 in { 
-  config = mkIf (with config.fnctl2; enable && gui.enable) {
+  config = mkIf (enable && gui.enable) {
+    environment.variables."TERM" = mkForce gui.defaultApps.terminal;
+    environment.sessionVariables."TERM" = gui.defaultApps.terminal;
+
     environment.systemPackages = with pkgs; [
 
       (makeDesktopItem {
