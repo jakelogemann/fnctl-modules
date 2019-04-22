@@ -9,6 +9,11 @@ let
 in
 { config = mkIf (with config.fnctl2; enable && gui.enable) {
 
+  services.flatpak = {
+    enable = true;
+  };
+
+
   services.xserver.desktopManager.gnome3 = {
     extraGSettingsOverridePackages = (with pkgs.gnome3; [ 
       gnome-shell

@@ -10,7 +10,7 @@
       default = "firefox";
       type = types.enum 
       [ "firefox"
-        "chromium"
+        "chromium-browser"
         "google-chrome"
         "qutebrowser"
       ];
@@ -18,19 +18,19 @@
 
     editor = mkOption 
     { description = "Which graphical editor should be pre-configured as the default?";
-      default = "vscode";
+      default = "code";
       type = types.enum 
-      [ "vscode"
-        "neovim"  /* Implemented w/ alacritty term */
+      [ "code"
+        "nvim"  /* Implemented w/ alacritty term */
       ];
     };
 
     terminal = mkOption 
     { description = "Which graphical terminal should be pre-configured as the default?";
-      default = "kitty";
+      default = "alacritty";
       type = types.enum [ 
-        "kitty" 
         "alacritty" 
+        "kitty" 
       ];
     };
 

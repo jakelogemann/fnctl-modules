@@ -1,8 +1,11 @@
 { config, lib, options, pkgs, ... }: {
 
   imports = [
-    ./sysctl.nix
+    ./dns.nix
+    ./firewall.nix
+    ./nat.nix
     ./sniffers.nix
+    ./sysctl.nix
   ];
 
 }

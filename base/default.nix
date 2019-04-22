@@ -3,7 +3,6 @@
   imports = [
     ./boot-sysctl.nix
     ./boot.nix
-    ./firewall.nix
     ./hardware.nix
     ./locale.nix
     ./nix-config.nix
