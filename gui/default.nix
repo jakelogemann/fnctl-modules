@@ -7,6 +7,7 @@
   ./gnome-services.nix
   ./gnome-dconf.nix
   ./gnome-app-items.nix
+  ./gnome-app-folders.nix
   ./gnome.nix
   ./packages.nix
   ./xserver.nix

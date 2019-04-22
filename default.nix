@@ -3,7 +3,9 @@
 , options ? nixos.options
 , pkgs    ? nixos.pkgs
 , lib     ? pkgs.lib
-, ... }: { imports = [
+, ... }: 
+
+{ imports = [
     # clone the fnctl functions repo to this repo's parent directory
     ../functions/nixos.nix
 
