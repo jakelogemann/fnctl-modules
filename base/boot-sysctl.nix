@@ -86,8 +86,12 @@ in {
     # number may be preferred. Each file watch takes up 540 bytes (32-bit) or
     # ~1kB (64-bit), so assuming that all 524288 watches are consumed that
     # results in an upper bound of around 256MB (32-bit) or 512MB (64-bit).
-    "fs.inotify.max_user_watches"   = mkDefault 1048576;
-    "fs.inotify.max_user_instances" = mkDefault 1024;
-    "fs.inotify.max_queued_events"  = mkDefault 32768;
+    #
+    # NOTE: Conflicts, if using mkDefault, with:
+    # `/nix/var/nix/profiles/per-user/root/channels/nixos/nixos/modules/services/x11/xserver.nix'
+    #
+    "fs.inotify.max_user_watches"   = 1048576;
+    "fs.inotify.max_user_instances" = 1024;
+    "fs.inotify.max_queued_events"  = 32768;
   };
 }
