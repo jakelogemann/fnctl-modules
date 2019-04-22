@@ -125,20 +125,9 @@ in
         };
       };
 
-      "dconf/db/local.d/99_unsorted" = {
+      "dconf/db/local.d/90_app_dconfeditor" = {
         mode = "0444";
         text = toDconf {
-
-          "org/gnome/settings-daemon/plugins/xsettings"  =  {
-            antialiasing  =  "rgba";
-            hinting  =  "medium";
-          };
-
-          "org/gtk/settings/debug" = {
-            enable-inspector-keybinding = true;
-            inspector-warning = true;
-          };
-
           "ca/desrt/dconf-editor" = {
             small-bookmark-rows = true;
             show-warning = false;
@@ -147,6 +136,12 @@ in
             restore-view = true;
             use-shortpaths = true;
           };
+        };
+      };
+
+      "dconf/db/local.d/90_app_seahorse" = {
+        mode = "0444";
+        text = toDconf {
 
           "apps/seahorse" = {
             server-auto-publish = true;
@@ -158,46 +153,12 @@ in
             sidebar-visible = false;
           };
 
-          "org/gnome/shell"  =  {
-            app-picker-view  =  0;
-            always-show-log-out  =  true;
-            remember-mount-password  =  true;
-          };
+        };
+      };
 
-          "org/gnome/shell/window-switcher"  =  {
-            current-workspace-only = false;
-            app-icon-mode = "both";
-          };
-
-          "org/gnome/desktop/lockdown"  =  {
-            user-administration-disabled = true;
-          };
-
-          "org/gnome/shell/overrides"  =  {
-            workspaces-only-on-primary = false;
-            attach-modal-dialogs = true;
-          };
-
-          "org/gnome/power-manager"  =  {
-            info-history-type = "charge";
-            info-stats-type = "discharge-accuracy";
-            info-last-device = "wakeups";
-            info-page-number = 3;
-          };
-
-          "org/gnome/desktop/wm/preferences"  =  {
-            titlebar-font = "NotoSansDisplay Nerd Font 11";
-            titlebar-uses-system-font = false;
-            audible-bell = false;
-            visual-bell = true;
-            visual-bell-type = "frame-flash";
-            resize-with-right-button = true;
-            action-middle-click-titlebar = "minimize";
-            action-left-click-titlebar = "toggle-maximize";
-            action-right-click-titlebar = "menu";
-            button-layout = "appmenu:minimize,close";
-          };
-
+      "dconf/db/local.d/50_app_folders" = {
+        mode = "0444";
+        text = toDconf {
           "org/gnome/desktop/app-folders"  =  {
             folder-children  =  [
               "AudioVideo" 
@@ -366,6 +327,63 @@ in
             ];
             name = "Utilities";
           };
+        };
+      };
+
+      "dconf/db/local.d/99_unsorted" = {
+        mode = "0444";
+        text = toDconf {
+
+          "org/gnome/settings-daemon/plugins/xsettings"  =  {
+            antialiasing  =  "rgba";
+            hinting  =  "medium";
+          };
+
+          "org/gtk/settings/debug" = {
+            enable-inspector-keybinding = true;
+            inspector-warning = true;
+          };
+
+          "org/gnome/shell"  =  {
+            app-picker-view  =  0;
+            always-show-log-out  =  true;
+            remember-mount-password  =  true;
+          };
+
+          "org/gnome/shell/window-switcher"  =  {
+            current-workspace-only = false;
+            app-icon-mode = "both";
+          };
+
+          "org/gnome/desktop/lockdown"  =  {
+            user-administration-disabled = true;
+          };
+
+          "org/gnome/shell/overrides"  =  {
+            workspaces-only-on-primary = false;
+            attach-modal-dialogs = true;
+          };
+
+          "org/gnome/power-manager"  =  {
+            info-history-type = "charge";
+            info-stats-type = "discharge-accuracy";
+            info-last-device = "wakeups";
+            info-page-number = 3;
+          };
+
+          "org/gnome/desktop/wm/preferences"  =  {
+            titlebar-font = "NotoSansDisplay Nerd Font 11";
+            titlebar-uses-system-font = false;
+            audible-bell = false;
+            visual-bell = true;
+            visual-bell-type = "frame-flash";
+            resize-with-right-button = true;
+            action-middle-click-titlebar = "minimize";
+            action-left-click-titlebar = "toggle-maximize";
+            action-right-click-titlebar = "menu";
+            button-layout = "appmenu:minimize,close";
+          };
+
 
           "org/gnome/desktop/background"  =  {
             show-desktop-icons = true;
