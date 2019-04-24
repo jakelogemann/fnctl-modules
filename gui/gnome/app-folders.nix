@@ -46,10 +46,15 @@ let
 
     "HelpDocs"  =  {
       name = "Help & Docs";
+      categories = [
+        "Docs"
+        "Documentation"
+        "Help"
+        "Manual"
+      ];
       apps = [
         "nixos-manual.desktop"
         "org.zealdocs.Zeal.desktop"
-        "Fnctl-Docs.desktop"
       ];
     };
 
