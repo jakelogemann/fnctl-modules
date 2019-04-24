@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }: with lib; 
+{ config, pkgs, lib, ... }: with lib;
 { config = mkIf (with config.fnctl2; enable && gui.enable) {
-  services = { 
+  hardware = {
+    opengl.enable = true;
+  };
+  services = {
     xserver = {
       enable                = mkForce true;
       autorun               = mkForce true;
@@ -20,13 +23,11 @@
       # After boot, the drive must be unencrypted and after
       # sleep/suspend/hibernate, a password is required.
       displayManager       = {
-        sddm.enable        = false;
-        lightdm.enable     = false;
-        gdm                = {
-          enable           = true;
-          wayland          = false;
-          debug            = true;
-        };
+        sddm.enable        = mkForce false;
+        lightdm.enable     = mkForce false;
+        gdm.enable         = mkForce true;
+        gdm.wayland        = mkForce false;
+        gdm.debug          = mkForce true;
       };
     };
   };
@@ -37,7 +38,7 @@
 
     /* Standard X Desktop Utils */
     xdg_utils
-    xdg-user-dirs 
+    xdg-user-dirs
     slock                 /* Simple/Screen Lock */
     desktop-file-utils
     xsel xclip            /* Clipboards */

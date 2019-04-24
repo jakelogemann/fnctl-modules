@@ -5,10 +5,12 @@ let
   # FIXME: Dont hardcode this...
   termCmd = "${pkgs.alacritty}/bin/alacritty";
 
-in { 
+in {
   config = mkIf (enable && gui.enable) {
     environment.variables."TERM" = mkForce gui.defaultApps.terminal;
+    environment.variables."VISUAL" = mkForce gui.defaultApps.editor;
     environment.sessionVariables."TERM" = gui.defaultApps.terminal;
+    environment.sessionVariables."VISUAL" = gui.defaultApps.editor;
 
     environment.systemPackages = with pkgs; [
 
@@ -33,5 +35,5 @@ in {
       })
 
     ];
-  }; 
+  };
 }

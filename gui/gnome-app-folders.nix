@@ -2,7 +2,9 @@
 with lib;
 with import ./_helpers.nix { inherit pkgs lib; };
 
-let inherit (config.fnctl2) enable gui; in { 
+let 
+  inherit (config.fnctl2) enable gui; 
+in { 
   config.environment.etc = mkIf (enable && gui.enable) {
     "dconf/db/local.d/50_app_folders" = {
       mode = "0444";
