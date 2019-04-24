@@ -57,7 +57,6 @@ let inherit (config.fnctl2) enable gui; in
               "workspace-indicator@${extHost}"
               "windowsNavigator@${extHost}"
               "arc-menu@${extHost}"
-              "native-window-placement@${extHost}"
               "user-theme@${extHost}"
               "caffeine@patapon.info"
               "impatience@gfxmonk.net"

@@ -5,6 +5,9 @@ let
   gnomeExts = (with pkgs.gnomeExtensions; [
     caffeine    /* Toggle screenlock for reading */
     impatience  /* Speeds up animations. */
+    nohotcorner /* Disable hotcorners on Shell */
+    dash-to-dock /* OSX style dock. */
+    tilingnome   /* Tiling Gnome features. */
   ]);
 
 in
@@ -12,32 +15,6 @@ in
 
   services.flatpak = {
     enable = true;
-  };
-
-  services.xserver.desktopManager.gnome3 = {
-    extraGSettingsOverridePackages = (with pkgs.gnome3; [
-      gnome-shell
-      gnome-shell-extensions
-      gnome-usage
-      gnome-characters
-      # gnome-common
-      gnome-session
-      gnome-control-center
-      gnome-keyring
-      gnome-logs
-      gnome-panel
-      file-roller
-      totem
-      gvfs
-      gtk
-      polari
-      vino
-      vinagre
-      dconf-editor
-      nautilus
-      gnome-nettool
-      seahorse
-    ]);
   };
 
   environment.systemPackages = (with pkgs.gnome3; [
