@@ -2,7 +2,7 @@
 with lib;
 with import ./_helpers.nix { inherit pkgs lib; };
 
-let inherit (config.fnctl2) enable gui; in 
+let inherit (config.fnctl2) enable gui; in
 { config = mkIf (enable && gui.enable) {
 
     # Default theme(?)
@@ -33,7 +33,7 @@ let inherit (config.fnctl2) enable gui; in
         text = toDconf {
           "org/gnome/shell" =  {
             favorite-apps = [
-              "org.gnome.Nautilus.desktop" 
+              "org.gnome.Nautilus.desktop"
               "${gui.defaultApps.terminal}.desktop"
               "${gui.defaultApps.browser}.desktop"
               "${gui.defaultApps.editor}.desktop"
@@ -50,8 +50,8 @@ let inherit (config.fnctl2) enable gui; in
         mode = "0444";
         text = toDconf {
 
-          "org/gnome/shell" = let 
-            extHost = "gnome-shell-extensions.gcampax.github.com"; 
+          "org/gnome/shell" = let
+            extHost = "gnome-shell-extensions.gcampax.github.com";
           in {
             enabled-extensions  =  [
               "workspace-indicator@${extHost}"
@@ -239,7 +239,7 @@ let inherit (config.fnctl2) enable gui; in
 
           "org/gnome/desktop/input-sources"  =  {
             xkb-options  =  concatStringsSep "," [
-              "ctrl:nocaps" 
+              "ctrl:nocaps"
               "altwin:swap_lalt_lwin"
             ];
           };
@@ -250,7 +250,7 @@ let inherit (config.fnctl2) enable gui; in
               "org.gnome.Documents.desktop"
               "org.gnome.Nautilus.desktop"
             ];
-            
+
             disable-external = true;
           };
 

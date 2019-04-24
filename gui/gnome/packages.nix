@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }: with lib;
 
 let
+  inherit (config.fnctl2) enable gui;
   gnomeExts = (with pkgs.gnomeExtensions; [
     caffeine    /* Toggle screenlock for reading */
     impatience  /* Speeds up animations. */
@@ -13,9 +14,8 @@ in
     enable = true;
   };
 
-
   services.xserver.desktopManager.gnome3 = {
-    extraGSettingsOverridePackages = (with pkgs.gnome3; [ 
+    extraGSettingsOverridePackages = (with pkgs.gnome3; [
       gnome-shell
       gnome-shell-extensions
       gnome-usage

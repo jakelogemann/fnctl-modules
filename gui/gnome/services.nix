@@ -1,13 +1,14 @@
 { config, pkgs, lib, ... }: with lib;
 
 let
+  inherit (config.fnctl2) enable gui;
   gnomeExts = (with pkgs.gnomeExtensions; [
     caffeine    /* Toggle screenlock for reading */
     impatience  /* Speeds up animations. */
   ]);
 
 in
-{ config = mkIf (with config.fnctl2; enable && gui.enable) {
+{ config = mkIf (enable && gui.enable) {
 
   services = {
     /* Disables Gnome's package installer (broken?). */
@@ -21,7 +22,7 @@ in
     gnome3     = {
       /* at-spi2-core.enable        = false;  # assistive technology service */
       chrome-gnome-shell.enable    = true;   # allows installing gnome shell extensions from chromium/chrome
-      evolution-data-server.enable = lib.mkForce false;  # services for storing address books and calendars
+      evolution-data-server.enable = mkForce false;  # services for storing address books and calendars
       gnome-disks.enable           = true;   # UDisks2 graphical front-end
       gnome-documents.enable       = false;  # document manager
       gnome-keyring.enable         = true;   # credential store

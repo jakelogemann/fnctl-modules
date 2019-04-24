@@ -1,5 +1,12 @@
-{ config, pkgs, lib, ... }: with lib; 
-{ config = mkIf (with config.fnctl2; enable && gui.enable) {
+{ config, pkgs, lib, ... }: with lib;
+let
+  inherit (config.fnctl2) enable gui;
+in { config = mkIf (enable && gui.enable) {
+
+  environment.variables."TERM" = mkForce gui.defaultApps.terminal;
+  environment.variables."VISUAL" = mkForce gui.defaultApps.editor;
+  environment.sessionVariables."TERM" = gui.defaultApps.terminal;
+  environment.sessionVariables."VISUAL" = gui.defaultApps.editor;
 
   environment.systemPackages = with pkgs; [
     arandr  /* Minimal X11 display conf tool */

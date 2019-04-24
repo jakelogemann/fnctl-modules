@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }: 
 with lib;
-with import ./_helpers.nix { inherit pkgs lib; };
+with import ./gnome/_helpers.nix { inherit pkgs lib; };
 
 let 
   inherit (config.fnctl2) enable gui; 

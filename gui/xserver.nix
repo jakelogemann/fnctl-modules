@@ -27,7 +27,6 @@
         lightdm.enable     = mkForce false;
         gdm.enable         = mkForce true;
         gdm.wayland        = mkForce false;
-        gdm.debug          = mkForce true;
       };
     };
   };
