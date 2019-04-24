@@ -40,6 +40,7 @@ let
         "pidgin.desktop"
         "signal-desktop.desktop"
         "thunderbird.desktop"
+        "net.sourceforge.liferea.desktop"
       ];
     };
 
@@ -54,11 +55,17 @@ let
 
     "Storage"  =  {
       name = "Storage";
-      categories = [];
+      categories = [
+        "Filesystem"
+        "FileTools"
+        "Archiving"
+        "Compression"
+      ];
       apps = [
         "org.gnome.Nautilus.desktop"
         "org.gnome.FileRoller.desktop"
         "org.gnome.DiskUtility.desktop"
+        "org.gnome.baobab.desktop"
         "gnome-disk-image-mounter.desktop"
         "gnome-disk-image-writer.desktop"
       ];
@@ -66,11 +73,12 @@ let
 
     "NetworkAnalysis"  =  {
       name = "Net Analysis";
-      categories = [];
+      categories = ["Network"];
       apps = [
         "wireshark.desktop"
         "zenmap.desktop"
         "zenmap-root.desktop"
+        "gnome-nettool.desktop"
       ];
     };
 
@@ -85,12 +93,13 @@ let
         "code.desktop"
         "nvim.desktop"
         "gnvim.desktop"
+        "org.gnome.gedit.desktop"
         "emacs.desktop"
         "postman.desktop"
       ];
     };
 
-    "Graphics"  =  {
+    "Design & Graphics"  =  {
       name = "Graphics";
       categories = [
         "Graphics"
@@ -101,6 +110,7 @@ let
       ];
       apps = [
         "dia.desktop"
+        "pencil.desktop"
         "draw.desktop"
         "gimp.desktop"
         "inkscape.desktop"
@@ -113,22 +123,11 @@ let
       apps = [
         "impress.desktop"
         "draw.desktop"
+        "calc.desktop"
+        "simple-scan.desktop"
         "math.desktop"
         "writer.desktop"
         "focuswriter.desktop"
-      ];
-    };
-
-    "Network"  =  {
-      name = "Network";
-      categories = [
-        "Network"
-        "FileTransfer"
-        "X-GNOME-NetworkSettings"
-        "RemoteAccess"
-      ];
-      apps = [
-        "gnome-nettool.desktop"
       ];
     };
 
@@ -141,26 +140,39 @@ let
       ];
     };
 
-    "System-Tools"  =  {
-      name = "System";
+    "Settings"  =  {
+      name = "Settings";
       categories = [
-        "System-Tools"
         "Settings"
         "HardwareSettings"
-        "System"
-        "Monitor"
-        "Filesystem"
         "Preferences"
-        "Install"
-        "Store"
-        "Security"
-        "PackageManager"
+        "X-GNOME-NetworkSettings"
       ];
+        apps = [
+          "org.gnome.tweaks.desktop"
+          "rygel.desktop" "rygel-preferences.desktop"  /* UPnP */
+          "ca.desrt.dconf-editor.desktop"
+          "arandr.desktop"
+          "gnome-system-monitor.desktop"
+          "org.gnome.Usage.desktop"
+          "org.gnome.PowerStats.desktop"
+        ];
+      };
+
+    "Store"  =  {
+      name = "Package Stores";
+      categories = ["Install" "Store" "PackageManager"];
+    };
+
+    "P2P"  =  {
+      name = "P2P & Sharing";
+      categories = ["FileTransfer" "P2P" "RemoteAccess"];
       apps = [
-        "org.gnome.gedit.desktop"
-        "redshift-gtk.desktop"
-        "org.gnome.tweaks.desktop"
-        "yelp.desktop"
+        "deluge.desktop"
+        "vinagre.desktop"
+        "bluetooth-sendto.desktop"
+        "vinagre-file.desktop"
+        "vino-server.desktop"
       ];
     };
 
@@ -180,17 +192,21 @@ let
       categories = [
         "X-GNOME-Utilities"
         "Utility"
-        "FileTools"
-        "Filesystem"
-        "Archiving"
-        "Compression"
         "Security"
         "Calculator"
+        "System-Tools"
+        "System"
+        "Monitor"
       ];
       apps = [
         "simple-scan.desktop"
+        "gucharmap.desktop"
         "org.gnome.GPaste.Ui.desktop"
-        "calc.desktop"
+        "org.gnome.Cheese.desktop"
+        "org.gnome.Calculator.desktop"
+        "org.gnome.Characters.desktop"
+        "org.gnome.Screenshot.desktop"
+        "org.gnome.font-viewer.desktop"
       ];
     };
 
