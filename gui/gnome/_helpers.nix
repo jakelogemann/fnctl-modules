@@ -15,6 +15,22 @@ rec {
   else if (isList v) then "[" + concatMapStringsSep "," fmtDconfVal v + "]"
   else toString v;
 
+  /* executes the proper terminal emulator with the proper
+     arguments/environment for a given terminal name. */
+   termExec = { termName, cmdStr, workDir ? "~/"}:
+   if termName == "kitty" then "kitty -d ${workDir} -- ${cmdStr}"
+   else if termName == "alacritty" then "alacritty --working-directory ${workDir} -e ${cmdStr}"
+   else "xterm -e ${cmdStr}";
+
+  /* executes the proper terminal emulator with the proper
+     arguments/environment for a given terminal name. */
+   openUrl = { browserName, url }:
+   if browserName == "firefox" then 
+    "firefox --new-tab '${url}'"
+   else if browserName == "chromium-browser" then 
+    "chromium-browser --password-store=gnome '${url}'"
+   else "w3m '${url}'";
+
   /* Generates a DConf-style INI file from attributes of the form:
 
   Example Usage:
