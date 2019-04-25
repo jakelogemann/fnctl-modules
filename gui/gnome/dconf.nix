@@ -222,7 +222,10 @@ let inherit (config.fnctl2) enable gui; in
           };
 
           "org/gnome/desktop/input-sources"  =  {
-            xkb-options  =  concatStringsSep "," [
+          sources = [
+            "('xkb', 'us')"
+          ];
+          xkb-options  =  [
               "ctrl:nocaps"
               "altwin:swap_lalt_lwin"
             ];

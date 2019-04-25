@@ -3,16 +3,18 @@ rec {
   inherit (lib.generators) toINI;
   isEmptyList = v: (isList v && builtins.length v == 0);
   boolToString = v: (if v then "true" else "false");
+  isTuple = v: ((builtins.match ".*([\(].+[\)]).*" (toString v)) != null);
 
-  setAttrsToVal = val: attrNames: 
+  setAttrsToVal = val: attrNames:
     listToAttrs (map (li: nameValuePair li val) attrNames);
 
   /* Formats a given value to be a valid entry in GSettings. */
   fmtDconfVal = v:
   if isBool v then (boolToString v)
-  else if isString v then "'${v}'"
+  else if (isString v && !isTuple v) then "'${v}'"
   else if (isEmptyList v) then "[\"\", nothing]"
   else if (isList v) then "[" + concatMapStringsSep "," fmtDconfVal v + "]"
+  else if (isTuple v) then (builtins.head (builtins.match "\((.+)\)" (toString v)))
   else toString v;
 
   /* executes the proper terminal emulator with the proper
@@ -25,9 +27,9 @@ rec {
   /* executes the proper terminal emulator with the proper
      arguments/environment for a given terminal name. */
    openUrl = { browserName, url }:
-   if browserName == "firefox" then 
+   if browserName == "firefox" then
     "firefox --new-tab '${url}'"
-   else if browserName == "chromium-browser" then 
+   else if browserName == "chromium-browser" then
     "chromium-browser --password-store=gnome '${url}'"
    else "w3m '${url}'";
 
@@ -42,7 +44,7 @@ rec {
   };
   }
   ```*/
-  toDconf = toINI { 
+  toDconf = toINI {
     mkKeyValue = key: value: "${key}=${fmtDconfVal value}";
   };
 

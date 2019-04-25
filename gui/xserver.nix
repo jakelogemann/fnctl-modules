@@ -11,8 +11,8 @@
       startDbusSession      = mkForce true;
       updateDbusEnvironment = mkForce true;
 
-      layout               = "us";
-      xkbOptions           = "ctrl:nocaps,altwin:swap_lalt_lwin";
+      layout               = mkDefault "us";
+      xkbOptions           = mkDefault "ctrl:nocaps,altwin:swap_lalt_lwin";
 
       libinput             = {
         enable             = true;
