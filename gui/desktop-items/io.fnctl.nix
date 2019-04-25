@@ -29,6 +29,19 @@ let
     })
 
     (makeDesktopItem {
+      name = "io.fnctl.gitlab-activity";
+      desktopName = "Fnctl GitLab Activity";
+      exec = openUrl {
+        browserName = gui.defaultApps.browser;
+        url = "https://gitlab.com/groups/fnctl/-/activity";
+      };
+      icon = ./icons/fnctl-gitlab.png;
+      type = "Application";
+      categories = "Documentation";
+    })
+
+
+    (makeDesktopItem {
       name = "io.fnctl.gitlab-merge-requests";
       desktopName = "Fnctl Merge Requests";
       exec = openUrl {
