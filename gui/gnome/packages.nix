@@ -10,15 +10,15 @@ let
     nohotcorner        /* Disable hotcorners on Shell */
     dash-to-dock       /* OSX style dock. */
     dash-to-panel      /* moves the dash to the gnome main panel */
-    /* system-monitor     /* shows system stats in bar  /* Marked Broken ? */
+    system-monitor     /* shows system stats in bar */
     topicons-plus      /*  moves legacy tray icons to the top panel. */
-  # tilingnome         /* Tiling Gnome features. */
-  # workspace-grid     /* more tiling options */
+    # tilingnome         /* Tiling Gnome features. */
+    # workspace-grid     /* more tiling options */
   ]);
 
   gnomeApps = (with pkgs.gnome3; [
     cheese        /* Photobooth (webcam tester) */
-    dconf-editor  /* Advanced deskto config editor/viewer. */
+    dconf-editor  /* Advanced desktop config editor/viewer. */
     gnome-backgrounds
     gnome-themes-standard
     gnome-themes-extra
