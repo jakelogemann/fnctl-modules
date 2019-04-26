@@ -9,7 +9,7 @@ let
   generated for each app folder at compile time. By doing this we can ensure
   that each app explicitly placed in a folder is placed exclusively in that
   folder and no others.
-  See Also: https://standards.freedesktop.org/menu-spec/latest/apas02.html 
+  See Also: https://standards.freedesktop.org/menu-spec/latest/apas02.html
   */
   appDirs = {
     "AudioVideo" = {
@@ -143,6 +143,7 @@ let
       apps = [
         "gnome-privacy-panel.desktop"
         "org.gnome.seahorse.Application.desktop"
+        "ykman-gui.desktop"
       ];
     };
 

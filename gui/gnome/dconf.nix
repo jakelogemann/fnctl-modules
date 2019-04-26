@@ -11,7 +11,7 @@ let inherit (config.fnctl2) enable gui; in
     environment.etc = {
       "dconf/profile/user" = {
         mode = "0444";
-        text = concatStringsSep "\n" ["system-db:local" "user-db:user"];
+        text = concatStringsSep "\n" ["user-db:user" "system-db:local"];
       };
 
       "dconf/db/local.d/10_favorite_apps" = {
@@ -100,7 +100,6 @@ let inherit (config.fnctl2) enable gui; in
         text = toDconf {
 
           "apps/seahorse" = {
-            server-auto-publish = true;
             server-auto-retrieve = true;
             server-publish-to = "hkp://pool.sks-keyservers.net";
           };
@@ -155,7 +154,7 @@ let inherit (config.fnctl2) enable gui; in
           };
 
           "org/gnome/desktop/wm/preferences"  =  {
-            titlebar-font = "NotoSansDisplay Nerd Font 11";
+            titlebar-font = "Cantarell Bold 11";
             titlebar-uses-system-font = false;
             audible-bell = false;
             visual-bell = true;
@@ -216,8 +215,8 @@ let inherit (config.fnctl2) enable gui; in
             gtk-key-theme = "Emacs";
             cursor-theme = "Numix-Cursor";
             monospace-font-name = "FuraMono Nerd Font Mono 11";
-            font-name = "NotoSansDisplay Nerd Font 11";
-            document-font-name = "NotoSansDisplay Nerd Font Condensed 11";
+            font-name = "Cantarell 11";
+            document-font-name = "Cantarell 11";
             show-battery-percentage = true;
           };
 
