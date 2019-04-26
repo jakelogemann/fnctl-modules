@@ -40,17 +40,8 @@ let inherit (config.fnctl2) enable gui; in
         mode = "0444";
         text = toDconf {
 
-          "org/gnome/shell" = let
-            extHost = "gnome-shell-extensions.gcampax.github.com";
-          in {
-            enabled-extensions  =  [
-              "workspace-indicator@${extHost}"
-              "windowsNavigator@${extHost}"
-              "arc-menu@${extHost}"
-              "user-theme@${extHost}"
-              "caffeine@patapon.info"
-              "impatience@gfxmonk.net"
-            ];
+          "org/gnome/shell" = {
+            enabled-extensions  = gui.defaultApps.gnomeExtensions;
           };
 
           "org/gnome/shell/extensions/user-theme"  =  {
@@ -63,6 +54,75 @@ let inherit (config.fnctl2) enable gui; in
 
           "org/gnome/shell/extensions/net/gfxmonk/impatience" = {
             speed-factor = 0.75;
+          };
+
+          "org/gnome/shell/extensions/dash-to-panel" = {
+            show-apps-icon-file = "";
+            show-apps-icon-side-padding = 0;
+            dot-color-unfocused-1 = "#5294e2";
+            dot-color-unfocused-2 = "#5294e2";
+            dot-color-unfocused-3 = "#5294e2";
+            dot-color-unfocused-4 = "#5294e2";
+            dot-position = "BOTTOM";
+            focus-highlight-color = "#eeeeee";
+            panel-size = 24;
+            dot-style-focused = "METRO";
+            location-clock = "BUTTONSLEFT";
+            shift-click-action = "MINIMIZE";
+            hotkeys-overlay-combo = "TEMPORARILY";
+            dot-color-1 = "#5294e2";
+            dot-color-2 = "#5294e2";
+            dot-color-3 = "#5294e2";
+            dot-color-4 = "#5294e2";
+            dot-style-unfocused = "METRO";
+            secondarymenu-contains-showdetails = false;
+            panel-position = "TOP";
+            appicon-margin = 4;
+            shift-middle-click-action = "LAUNCH";
+            show-activities-button = false;
+            middle-click-action = "LAUNCH";
+            show-showdesktop-button = false;
+            appicon-padding = 4;
+            taskbar-position = "LEFTPANEL_FIXEDCENTER";
+          };
+
+          "org/gnome/shell/extensions/system-monitor" = {
+            battery-show-text = true;
+            center-display = false;
+            fan-display = false;
+            show-tooltip = false;
+            gpu-display = false;
+            battery-hidesystem = false;
+            compact-display = true;
+            icon-display = false;
+            net-display = false;
+            net-show-text = true;
+            freq-display = false;
+            move-clock = false;
+            net-style = "digit";
+            memory-style = "digit";
+            swap-display = false;
+            battery-show-menu = true;
+            thermal-display = false;
+            freq-style = "digit";
+            swap-style = "digit";
+            thermal-style = "digit";
+            cpu-style = "digit";
+            fan-style = "digit";
+            gpu-show-menu = true;
+            gpu-style = "digit";
+            disk-display = false;
+            disk-style = "digit";
+            net-show-menu = true;
+          };
+
+          "org/gnome/shell/extensions/topicons" = {
+            icon-brightness = 0.0;
+            icon-size = 16;
+            icon-spacing = 4;
+            tray-pos = "right";
+            icon-saturation = 0.5;
+            tray-order = 1;
           };
         };
       };
@@ -231,6 +291,7 @@ let inherit (config.fnctl2) enable gui; in
             xkb-options  =  [
                 "ctrl:nocaps"
                 "altwin:swap_lalt_lwin"
+                "terminate:ctrl_alt_bksp"
             ];
           };
 

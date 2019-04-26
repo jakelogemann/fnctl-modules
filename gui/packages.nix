@@ -3,21 +3,31 @@ let
   inherit (config.fnctl2) enable gui;
 in { config = mkIf (enable && gui.enable) {
 
-  environment.variables."TERM" = mkForce gui.defaultApps.terminal;
-  environment.variables."VISUAL" = mkForce gui.defaultApps.editor;
-  environment.sessionVariables."TERM" = gui.defaultApps.terminal;
+  environment.variables."TERM"          = mkForce gui.defaultApps.terminal;
+  environment.variables."VISUAL"        = mkForce gui.defaultApps.editor;
+  environment.sessionVariables."TERM"   = gui.defaultApps.terminal;
   environment.sessionVariables."VISUAL" = gui.defaultApps.editor;
 
   environment.systemPackages = with pkgs; [
     arandr  /* Minimal X11 display conf tool */
 
     /* Standard X Desktop Utils */
-    xdg_utils xdg-user-dirs slock
+    xdg_utils
+    xdg-user-dirs
+    slock
     desktop-file-utils
-    xsel xclip xdo xdotool wmctrl
+    xsel
+    xclip
+    xdo
+    xdotool
+    wmctrl
 
     /* Rofi & Friends */
-    dmenu rofi rofi-menugen rofi-pass rofi-systemd
+    dmenu
+    rofi
+    rofi-menugen
+    rofi-pass
+    rofi-systemd
 
     /* Terminal Emulator(s)
     * TODO: This should be parameterized. */
@@ -62,7 +72,7 @@ in { config = mkIf (enable && gui.enable) {
 
     /* Design Suite(s)
     TODO: This should be parameterized. */
-    gimp 
+    gimp
     blender
     inkscape
 
