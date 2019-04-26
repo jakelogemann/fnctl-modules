@@ -197,8 +197,12 @@ let inherit (config.fnctl2) enable gui; in
           };
 
           "org/gnome/shell/window-switcher"  =  {
-            current-workspace-only = false;
+            current-workspace-only = true;
             app-icon-mode = "both";
+          };
+
+          "org/gnome/shell/app-switcher"  =  {
+            current-workspace-only = true;
           };
 
           "org/gnome/desktop/lockdown"  =  {
