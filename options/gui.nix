@@ -43,7 +43,7 @@
         "dash-to-panel@jderose9.github.com"
         "impatience@gfxmonk.net"
         "nohotcorner@azuri.free.fr"
-        "system-monitor@paradoxxx.zero.gmail.com"
+        # "system-monitor@paradoxxx.zero.gmail.com"
         "tilingnome@rliang.github.com"
         "TopIcons@phocean.net"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
