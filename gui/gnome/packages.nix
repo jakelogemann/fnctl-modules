@@ -8,7 +8,6 @@ let
     impatience   /* Speeds up animations. */
     nohotcorner  /* Disable hotcorners on Shell */
     dash-to-dock /* OSX style dock. */
-    tilingnome   /* Tiling Gnome features. */
     topicons-plus  /* Status tray */
     gsconnect   /* local device manager */
   ]);

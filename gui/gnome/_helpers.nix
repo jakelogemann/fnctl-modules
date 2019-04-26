@@ -22,7 +22,15 @@ rec {
    termExec = { termName, cmdStr, workDir ? "~/"}:
    if termName == "kitty" then "kitty -d ${workDir} -- ${cmdStr}"
    else if termName == "alacritty" then "alacritty --working-directory ${workDir} -e ${cmdStr}"
-   else "xterm -e ${cmdStr}";
+   else builtins.abort "Unsupported terminal: ${termName}";
+
+  /* executes the proper text editor with the proper
+     arguments/environment for a given editor name. */
+   openEditor = { editor, path ? "~/" }:
+   if editor == "code" then "code --wait --new-window ${path}"
+   else if editor == "nvim" then
+    (concatStringSep " " ["alacritty" "--title 'NeoVim :: ${path}'" "--class 'NeoVim'" "--command 'nvim ${path}'"])
+   else builtins.abort "Unsupported editor: ${editor}";
 
   /* executes the proper terminal emulator with the proper
      arguments/environment for a given terminal name. */
@@ -31,7 +39,7 @@ rec {
     "firefox --new-tab '${url}'"
    else if browserName == "chromium-browser" then
     "chromium-browser --password-store=gnome '${url}'"
-   else "w3m '${url}'";
+   else builtins.abort "Unsupported browser: ${browser}";
 
   /* Generates a DConf-style INI file from attributes of the form:
 
