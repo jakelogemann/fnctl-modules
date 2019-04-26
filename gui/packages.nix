@@ -50,6 +50,11 @@ in { config = mkIf (enable && gui.enable) {
     TODO: This should be parameterized. */
     deluge
 
+    /* Security related things...
+    TODO: This should be parameterized. */
+    yubikey-personalization-gui
+    yubikey-manager-qt
+
     /* Office Productivity Suite(s)
     TODO: This should be parameterized. */
     libreoffice-fresh
