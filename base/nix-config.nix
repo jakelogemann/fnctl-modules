@@ -50,6 +50,7 @@ lib.mkIf config.fnctl2.enable {
       plugin-files = ${extra-builtins-lib}
       extra-builtins-file = ${../extraBuiltins/default.nix}
       gc-keep-outputs = true
+      tarball-ttl = 86400
       gc-keep-derivations = true
     '';
   };
