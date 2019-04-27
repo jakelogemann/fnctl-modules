@@ -44,11 +44,10 @@
         "impatience@gfxmonk.net"
         "nohotcorner@azuri.free.fr"
         "system-monitor@paradoxxx.zero.gmail.com"
-        "tilingnome@rliang.github.com"
+        "ShellTile@emasab.it"
         "TopIcons@phocean.net"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "windowsNavigator@gnome-shell-extensions.gcampax.github.com"
-        "workspace-grid@mathematical.coffee.gmail.com"
         "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
       ];
       type = types.listOf (types.enum [
@@ -60,6 +59,7 @@
         "impatience@gfxmonk.net"
         "nohotcorner@azuri.free.fr"
         "system-monitor@paradoxxx.zero.gmail.com"
+        "ShellTile@emasab.it"
         "tilingnome@rliang.github.com"
         "TopIcons@phocean.net"
         "user-theme@gnome-shell-extensions.gcampax.github.com"

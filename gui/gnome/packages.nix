@@ -16,6 +16,10 @@ let
     # workspace-grid     /* more tiling options */
   ]);
 
+  extraPkgs = (with pkgs; [
+    shelltile
+  ]);
+
   gnomeApps = (with pkgs.gnome3; [
     cheese        /* Photobooth (webcam tester) */
     dconf-editor  /* Advanced desktop config editor/viewer. */
@@ -78,7 +82,11 @@ in
 
   services.xserver.desktopManager.gnome3.extraGSettingsOverridePackages = mkAfter glibCompat;
 
-  environment.systemPackages = gnomeApps ++ gnomeExts;
+  environment.systemPackages = gnomeApps ++ gnomeExts ++ extraPkgs;
+
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    shelltile = pkgs.callPackage ./pkgs/shelltile.nix {};
+  };
 
   /* Don't install unnecessary gnome3 packages */
   environment.gnome3.excludePackages = (with pkgs.gnome3; [
