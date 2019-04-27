@@ -1,24 +1,21 @@
-{ config, lib, pkgs, ... }: 
+{ config, lib, pkgs, ... }: with lib;
+let inherit (config.fnctl2) enable gui networking; in {
 
-let
-  isEnabled = (with config.fnctl2; enable && networking.enableSniffing);
+  config = mkIf (enable && networking.enableSniffing) {
 
-in { config = lib.mkIf isEnabled {
+    environment.systemPackages = with pkgs; [
+      tcpdump
+    ];
 
-  environment.systemPackages = with pkgs; [
-    tcpdump
-    # wireshark-gtk  # FIXME: This probably **requires** X11.
-  ];
+    users.groups.pcap.gid = 2602;
 
-  users.groups.pcap.gid = 2602;
+    /* Allow execution of wireshark/dumpcap without password. */
+    security.wrappers.dumpcap = {
+      source = "${pkgs.wireshark-gtk}/bin/dumpcap";
+      permissions = "u+xs,g+x";
+      owner = "root";
+      group = "pcap";
+    };
 
-  # Allow execution of wireshark/dumpcap without password.
-  security.wrappers.dumpcap = {
-    source = "${pkgs.wireshark-gtk}/bin/dumpcap";
-    permissions = "u+xs,g+x";
-    owner = "root";
-    group = "pcap";
   };
-
-}; }
-
+}

@@ -149,11 +149,13 @@ let inherit (config.fnctl2) enable gui; in
         mode = "0444";
         text = toDconf {
           "ca/desrt/dconf-editor" = {
-            small-bookmark-rows = true;
+            small-bookmarks-rows = true;
             show-warning = false;
             small-keys-list-rows = true;
-            window-is-maximized = true;
-            restore-view = true;
+            window-is-maximized = false;
+            restore-view = false;
+            window-height = "600";
+            window-width = "800";
             use-shortpaths = true;
           };
         };
@@ -315,9 +317,9 @@ let inherit (config.fnctl2) enable gui; in
 
           "org/gtk/settings/file-chooser"  =  {
             clock-format = "12h";
-            show-size-column = true;
-            show-hidden = true;
-            sort-directories-first = true;
+            sort-column = "name";
+            sort-order = "ascending";
+            sort-directories-first = false;
             location-mode = "filename-entry";
           };
 
