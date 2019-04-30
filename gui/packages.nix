@@ -4,9 +4,7 @@ let
 in { config = mkIf (enable && gui.enable) {
 
   environment.variables."TERM"          = mkForce gui.defaultApps.terminal;
-  environment.variables."VISUAL"        = mkForce gui.defaultApps.editor;
   environment.sessionVariables."TERM"   = gui.defaultApps.terminal;
-  environment.sessionVariables."VISUAL" = gui.defaultApps.editor;
 
   environment.systemPackages = with pkgs; [
     arandr  /* Minimal X11 display conf tool */
@@ -51,10 +49,12 @@ in { config = mkIf (enable && gui.enable) {
     slack
     signal-desktop
 
-    /* Web Browser(s)
+    /* Readers & Web Browser(s)
     TODO: This should be parameterized. */
     firefox    /* <3 Mozilla <3 */
     chromium   /* Google-free web browser */
+    zeal         /* Docs Viewer (a la Dash on OS X). */
+    liferea      /* RSS/Atom News Reader */
 
     /* Peer to Peer Client(s)
     TODO: This should be parameterized. */
@@ -64,6 +64,7 @@ in { config = mkIf (enable && gui.enable) {
     TODO: This should be parameterized. */
     yubikey-personalization-gui
     yubikey-manager-qt
+    nmap-graphical    /* nmap GTK GUI */
 
     /* Office Productivity Suite(s)
     TODO: This should be parameterized. */
@@ -75,12 +76,6 @@ in { config = mkIf (enable && gui.enable) {
     gimp
     blender
     inkscape
-
-    /* EXPERIMENTAL:
-    Everything below here is entirely experimental and totally able to be
-    removed safely. */
-    focuswriter  /* Distraction free scratchpad */
-    liferea      /* RSS/Atom News Reader */
 
   ];
 
