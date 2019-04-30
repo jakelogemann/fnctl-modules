@@ -78,8 +78,16 @@ in { config = mkIf (enable && gui.enable) {
     blender
     inkscape
 
-    aesop  /* Experimental: Super simple, pretty PDF Viewer. */
-    bookworm  /* Experimental: Super simple, Ebook reader. */
+   /* Backup / Sync Tools
+    TODO: This should be parameterized. */
+    deja-dup
+
+   /* EXPERIMENTAL
+    NOTE: These tools can be safely removed. They're not coupled to anything
+          yet.
+    TODO: This should be parameterized. */
+    aesop     /* Elementary-style PDF Viewer. */
+    bookworm  /* Elementary-style Ebook reader. */
 
   ];
 
