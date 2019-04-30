@@ -24,9 +24,9 @@ in { config.environment = mkIf (enable && gui.enable) {
               url = "https://gitlab.com/fnctl";
             };
           };
-        # })
+        })
 
-        # (generators.toINI {} {
+        (generators.toINI {} {
           "Desktop Action Docs" = {
             Name = "Documentation";
             Exec = openUrl {

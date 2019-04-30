@@ -31,6 +31,7 @@ let inherit (config.fnctl2) enable gui; in
               "thunderbird.desktop"
               "spotify.desktop"
               "org.gnome.seahorse.Application.desktop"
+              "fnctl-dev.desktop"
             ];
           };
         };
