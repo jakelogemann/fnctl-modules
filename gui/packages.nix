@@ -17,6 +17,7 @@ in { config = mkIf (enable && gui.enable) {
     desktop-file-utils
     xsel
     xclip
+    glxinfo       /* OpenGL X11 Info tool */
     xdo
     xdotool
     wmctrl
