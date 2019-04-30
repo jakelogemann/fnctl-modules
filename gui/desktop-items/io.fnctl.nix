@@ -3,77 +3,71 @@ with (import ../gnome/_helpers.nix { inherit pkgs lib; });
 let
   inherit (config.fnctl2) enable gui;
 
-  appItems = with pkgs; [
-    (makeDesktopItem {
-      name = "io.fnctl.docs";
-      desktopName = "Fnctl Docs";
-      exec = openUrl {
-        browserName = gui.defaultApps.browser;
-        url = "https://docs.fnctl.io";
-      };
-      icon = ./icons/fnctl-docs.png;
-      type = "Application";
-      categories = "Documentation";
-    })
+in { config.environment = mkIf (enable && gui.enable) {
+  systemPackages = with pkgs; [
+    (writeTextFile {
+      name = "fnctl-dev.desktop";
+      destination = "/share/applications/fnctl-dev.desktop";
+      text = concatStringsSep "\n" [
+        (generators.toINI {} {
+          "Desktop Entry" = {
+            Type       = "Application";
+            Name       = "FnCtl.dev";
+            Terminal   = false;
+            # TryExec    = gui.defaultApps.browser;
+            Icon       = "${./icons/fnctl-gitlab.png}";
+            Categories = "Documentation";
+            Actions    = "Activity;Merges;Issues;Chat;Docs;";
 
-    (makeDesktopItem {
-      name = "io.fnctl.gitlab-group";
-      desktopName = "Fnctl GitLab";
-      exec = openUrl {
-        browserName = gui.defaultApps.browser;
-        url = "https://gitlab.com/fnctl";
-      };
-      icon = ./icons/fnctl-gitlab.png;
-      type = "Application";
-      categories = "Documentation";
-    })
+            Exec = openUrl {
+              browserName = gui.defaultApps.browser;
+              url = "https://gitlab.com/fnctl";
+            };
+          };
+        # })
 
-    (makeDesktopItem {
-      name = "io.fnctl.gitlab-activity";
-      desktopName = "Fnctl GitLab Activity";
-      exec = openUrl {
-        browserName = gui.defaultApps.browser;
-        url = "https://gitlab.com/groups/fnctl/-/activity";
-      };
-      icon = ./icons/fnctl-gitlab.png;
-      type = "Application";
-      categories = "Documentation";
-    })
+        # (generators.toINI {} {
+          "Desktop Action Docs" = {
+            Name = "Documentation";
+            Exec = openUrl {
+              browserName = gui.defaultApps.browser;
+              url = "https://docs.fnctl.io";
+            };
+          };
 
+          "Desktop Action Merges" = {
+            Name = "Merge Requests";
+            Exec = openUrl {
+              browserName = gui.defaultApps.browser;
+              url = "https://gitlab.com/groups/fnctl/-/merge_requests";
+            };
+          };
 
-    (makeDesktopItem {
-      name = "io.fnctl.gitlab-merge-requests";
-      desktopName = "Fnctl Merge Requests";
-      exec = openUrl {
-        browserName = gui.defaultApps.browser;
-        url = "https://gitlab.com/groups/fnctl/-/merge_requests";
-      };
-      icon = ./icons/fnctl-gitlab.png;
-      type = "Application";
-      categories = "Documentation";
-    })
+          "Desktop Action Issues" = {
+            Name = "Issues List";
+            Exec = openUrl {
+              browserName = gui.defaultApps.browser;
+              url = "https://gitlab.com/groups/fnctl/-/issues";
+            };
+          };
 
+          "Desktop Action Chat" = {
+            Name = "Developer Slack";
+            Exec = openUrl {
+              browserName = gui.defaultApps.browser;
+              url = "https://jlogemann.fnctl.io/channels/";
+            };
+          };
 
-    (makeDesktopItem {
-      name = "io.fnctl.gitlab-issues";
-      desktopName = "Fnctl Issues";
-      exec = openUrl {
-        browserName = gui.defaultApps.browser;
-        url = "https://gitlab.com/groups/fnctl/-/issues";
-      };
-      icon = ./icons/fnctl-issue.png;
-      type = "Application";
-      categories = "Documentation";
+          "Desktop Action Activity" = {
+            Name = "Recent Activity";
+            Exec = openUrl {
+              browserName = gui.defaultApps.browser;
+              url = "https://gitlab.com/groups/fnctl/-/activity";
+            };
+          };
+        })
+      ];
     })
   ];
-
-in {
-  config = mkIf (enable && gui.enable) {
-    environment.systemPackages = [
-      (pkgs.buildEnv {
-        name = "fnctl-appitems";
-        paths = appItems;
-      })
-    ];
-  };
-}
+}; }
