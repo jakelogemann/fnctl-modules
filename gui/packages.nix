@@ -10,6 +10,7 @@ in { config = mkIf (enable && gui.enable) {
     arandr  /* Minimal X11 display conf tool */
 
     /* Standard X Desktop Utils */
+    appeditor         /* Allows editing XDG Menu Items */
     xdg_utils
     xdg-user-dirs
     slock
