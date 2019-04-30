@@ -78,6 +78,9 @@ in { config = mkIf (enable && gui.enable) {
     blender
     inkscape
 
+    aesop  /* Experimental: Super simple, pretty PDF Viewer. */
+    bookworm  /* Experimental: Super simple, Ebook reader. */
+
   ];
 
   programs.wireshark = {
