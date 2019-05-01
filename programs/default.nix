@@ -9,6 +9,7 @@ in {
     ./fish.nix
     ./git.nix
     ./neovim.nix
+    ./spotify.nix
     ./tmux.nix
     ./zsh.nix
   ];
@@ -24,4 +25,3 @@ in {
 
   };
 }
-

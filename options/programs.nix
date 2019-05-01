@@ -9,20 +9,24 @@ with pkgs.fnctlFunc;
     enable = mkEnabledOption "Enable opinionated system-wide git config.";
   };
 
+  spotify = {
+    enable = mkDisabledOption "Enable spotify system-wide.";
+  };
+
   tmux = {
     enable = mkEnabledOption "Enable opinionated system-wide tmux config.";
   };
 
   fish = {
-    enable = mkEnabledOption "Enable opinionated system-wide fish config.";
+    enable = mkDisabledOption "Enable opinionated system-wide fish config.";
   };
 
   neovim = {
-    enable = mkEnabledOption "Enable opinionated system-wide neovim config.";
+    enable = mkDisabledOption "Enable opinionated system-wide neovim config.";
   };
 
   zsh = {
-    enable = mkEnabledOption "Enable opinionated system-wide zsh config.";
+    enable = mkDisabledOption "Enable opinionated system-wide zsh config.";
   };
 
 }; }
