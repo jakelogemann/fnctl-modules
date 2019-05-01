@@ -6,6 +6,7 @@ let
 in {
 
   imports = [
+    ./backup.nix
     ./fish.nix
     ./git.nix
     ./neovim.nix

@@ -4,7 +4,7 @@ let
   hasGui = config.services.xserver.enable;
 
   /* spotifyPackages are always installed, system-wide. */
-  spotifyPackages = lib.optionals hasGui (with pkgs; [ ]);
+  spotifyPackages = (with pkgs; [ ]);
 
   /* spotifyGuiPackages are only installed if X11 is enabled. */
   spotifyGuiPackages = lib.optionals hasGui (with pkgs; [

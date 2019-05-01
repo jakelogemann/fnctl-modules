@@ -13,6 +13,10 @@ with pkgs.fnctlFunc;
     enable = mkDisabledOption "Enable spotify system-wide.";
   };
 
+  backup = {
+    enable = mkEnabledOption "Enable opinionated backup toolset system-wide.";
+  };
+
   tmux = {
     enable = mkEnabledOption "Enable opinionated system-wide tmux config.";
   };

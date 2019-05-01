@@ -4,7 +4,7 @@ let
   hasGui = config.services.xserver.enable;
 
   /* gitPackages are always installed, system-wide. */
-  gitPackages = lib.optionals hasGui (with pkgs.gitAndTools; [
+  gitPackages = (with pkgs.gitAndTools; [
     git
     lab
     gitflow
