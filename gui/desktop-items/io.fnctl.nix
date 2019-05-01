@@ -14,57 +14,38 @@ in { config.environment = mkIf (enable && gui.enable) {
             Type       = "Application";
             Name       = "FnCtl.dev";
             Terminal   = false;
-            # TryExec    = gui.defaultApps.browser;
+            TryExec    = "xdg-open";
             Icon       = "${./icons/fnctl-gitlab.png}";
             Categories = "Documentation";
             Actions    = "Activity;Merges;Issues;Chat;Docs;";
-
-            Exec = openUrl {
-              browserName = gui.defaultApps.browser;
-              url = "https://gitlab.com/fnctl";
-            };
+            Exec       = "xdg-open 'https://gitlab.com/fnctl'";
           };
         })
 
         (generators.toINI {} {
           "Desktop Action Docs" = {
             Name = "Documentation";
-            Exec = openUrl {
-              browserName = gui.defaultApps.browser;
-              url = "https://docs.fnctl.io";
-            };
+            Exec = "xdg-open 'https://docs.fnctl.io'";
           };
 
           "Desktop Action Merges" = {
             Name = "Merge Requests";
-            Exec = openUrl {
-              browserName = gui.defaultApps.browser;
-              url = "https://gitlab.com/groups/fnctl/-/merge_requests";
-            };
+            Exec = "xdg-open 'https://gitlab.com/groups/fnctl/-/merge_requests'";
           };
 
           "Desktop Action Issues" = {
             Name = "Issues List";
-            Exec = openUrl {
-              browserName = gui.defaultApps.browser;
-              url = "https://gitlab.com/groups/fnctl/-/issues";
-            };
+            Exec = "xdg-open 'https://gitlab.com/groups/fnctl/-/issues'";
           };
 
           "Desktop Action Chat" = {
             Name = "Developer Slack";
-            Exec = openUrl {
-              browserName = gui.defaultApps.browser;
-              url = "https://jlogemann.fnctl.io/channels/";
-            };
+            Exec = "xdg-open 'https://jlogemann.fnctl.io/channels/'";
           };
 
           "Desktop Action Activity" = {
             Name = "Recent Activity";
-            Exec = openUrl {
-              browserName = gui.defaultApps.browser;
-              url = "https://gitlab.com/groups/fnctl/-/activity";
-            };
+            Exec = "xdg-open 'https://gitlab.com/groups/fnctl/-/activity'";
           };
         })
       ];
