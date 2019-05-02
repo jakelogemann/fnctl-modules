@@ -1,8 +1,10 @@
 { config, pkgs, lib, ... }: with lib;
 { config = mkIf (with config.fnctl2; enable && gui.enable) {
+
   hardware = {
     opengl.enable = true;
   };
+
   services = {
     xserver = {
       enable                = mkForce true;
@@ -12,7 +14,7 @@
       updateDbusEnvironment = mkForce true;
 
       layout               = mkDefault "us";
-      xkbOptions           = mkDefault "ctrl:nocaps,altwin:swap_lalt_lwin";
+      xkbOptions           = mkDefault "ctrl:nocaps,altwin:swap_lalt_lwin,terminate:ctrl_alt_bksp";
 
       libinput             = {
         enable             = true;
