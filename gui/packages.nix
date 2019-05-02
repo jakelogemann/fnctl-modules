@@ -3,6 +3,15 @@ let
   inherit (config.fnctl2) enable gui;
 in { config = mkIf (enable && gui.enable) {
 
+  nixpkgs.config = {
+    allowUnfree        = true;
+    packageOverrides   = pkgs: {
+       unstable        = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) {
+         config        = config.nixpkgs.config;
+      };
+    };
+  };
+
   environment.variables."TERM"          = mkForce gui.defaultApps.terminal;
   environment.sessionVariables."TERM"   = gui.defaultApps.terminal;
 
@@ -10,7 +19,7 @@ in { config = mkIf (enable && gui.enable) {
     arandr  /* Minimal X11 display conf tool */
 
     /* Standard X Desktop Utils */
-    appeditor         /* Allows editing XDG Menu Items */
+    unstable.appeditor         /* Allows editing XDG Menu Items */
     xdg_utils
     xdg-user-dirs
     slock
