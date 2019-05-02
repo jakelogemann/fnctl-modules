@@ -2,18 +2,23 @@
 
 let
   inherit (config.fnctl2) enable gui;
+
   gnomeExts = (with pkgs; [
-    gnomeExtensions.appindicator       /* app icons in top bar */
-    gnomeExtensions.caffeine           /* Toggle screenlock for reading */
-    gnomeExtensions.impatience         /* Speeds up animations. */
-    gnomeExtensions.nohotcorner        /* Disable hotcorners on Shell */
-    gnomeExtensions.dash-to-dock       /* OSX style dock. */
-    gnomeExtensions.dash-to-panel      /* moves the dash to the gnome main panel */
-    gnomeExtensions.system-monitor     /* shows system stats in bar */
-    gnomeExtensions.topicons-plus      /*  moves legacy tray icons to the top panel. */
- #  gnomeExtensions.tilingnome         /* Tiling Gnome features. */
- #  gnomeExtensions.workspace-grid     /* more tiling options */
-    shelltile                          /* Tiling support for GNOME */
+    lockkeys                /* Numlock & Capslock status on the panel */
+    password-store          /* Access passwords from pass (passwordstore.org) from the gnome-shell */
+    shelltile               /* Tiling support for GNOME */
+    top-bar-script-executor /* Add buttons to the top bar that execute commands */
+
+  ]) ++ (with pkgs.gnomeExtensions; [
+    appindicator        /* app icons in top bar */
+    caffeine            /* Toggle screenlock for reading */
+    clipboard-indicator /* Adds a clipboard indicator to the top panel, and caches clipboard history. */
+    impatience          /* Speeds up animations. */
+    nohotcorner         /* Disable hotcorners on Shell */
+    dash-to-dock        /* OSX style dock. */
+    dash-to-panel       /* moves the dash to the gnome main panel */
+    system-monitor      /* shows system stats in bar */
+    topicons-plus       /* moves legacy tray icons to the top panel. */
   ]);
 
 in
@@ -29,7 +34,7 @@ in
 
     /* Configure Gnome service itself */
     gnome3     = {
-      /* at-spi2-core.enable        = false;  # assistive technology service */
+      at-spi2-core.enable          =  mkForce false;  # assistive technology service
       chrome-gnome-shell.enable    = true;   # allows installing gnome shell extensions from chromium/chrome
       evolution-data-server.enable = mkForce false;  # services for storing address books and calendars
       gnome-disks.enable           = true;   # UDisks2 graphical front-end
@@ -41,7 +46,7 @@ in
       gnome-user-share.enable      = false;  # share public folder on network
       gpaste.enable                = true;   # clipboard manager
       gvfs.enable                  = true;   # userspace virtual filesystem support library
-      seahorse.enable              = true;  # credential manager search
+      seahorse.enable              = true;   # credential manager search
       sushi.enable                 = true;   # quick previewer for nautilus
       tracker-miners.enable        = false;  # file search indexing service
       tracker.enable               = false;  # file search engine, tool, and metadata storage system

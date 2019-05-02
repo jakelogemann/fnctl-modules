@@ -14,12 +14,10 @@ let inherit (config.fnctl2) enable gui; in
 
     environment.etc = {
       "dconf/profile/user" = {
-        mode = "0444";
         text = concatStringsSep "\n" ["user-db:user" "system-db:local"];
       };
 
       "dconf/db/local.d/10_favorite_apps" = {
-        mode = "0444";
         text = toDconf {
           "org/gnome/shell" =  {
             favorite-apps = [
@@ -38,15 +36,10 @@ let inherit (config.fnctl2) enable gui; in
       };
 
       "dconf/db/local.d/20_extensions" = {
-        mode = "0444";
         text = toDconf {
 
           "org/gnome/shell" = {
-            enabled-extensions  = gui.defaultApps.gnomeExtensions;
-          };
-
-          "org/gnome/shell/extensions/user-theme"  =  {
-            name = "Nordic";
+            enabled-extensions  = gui.gnome.extensions;
           };
 
           "org/gnome/shell/extensions/caffeine"  =  {
@@ -55,6 +48,10 @@ let inherit (config.fnctl2) enable gui; in
 
           "org/gnome/shell/extensions/net/gfxmonk/impatience" = {
             speed-factor = 0.75;
+          };
+
+          "org/gnome/shell/extensions/lockkeys" = {
+            style = "show-hide";
           };
 
           "org/gnome/shell/extensions/dash-to-panel" = {
@@ -66,17 +63,18 @@ let inherit (config.fnctl2) enable gui; in
             dot-color-unfocused-4 = "#5294e2";
             dot-position = "BOTTOM";
             focus-highlight-color = "#eeeeee";
-            panel-size = 24;
+            panel-size = 32;
             dot-style-focused = "METRO";
             location-clock = "BUTTONSLEFT";
             shift-click-action = "MINIMIZE";
+            hot-keys = true;
             hotkeys-overlay-combo = "TEMPORARILY";
             dot-color-1 = "#5294e2";
             dot-color-2 = "#5294e2";
             dot-color-3 = "#5294e2";
             dot-color-4 = "#5294e2";
             dot-style-unfocused = "METRO";
-            secondarymenu-contains-showdetails = false;
+            secondarymenu-contains-showdetails = true;
             panel-position = "TOP";
             appicon-margin = 4;
             shift-middle-click-action = "LAUNCH";
@@ -85,6 +83,11 @@ let inherit (config.fnctl2) enable gui; in
             show-showdesktop-button = false;
             appicon-padding = 4;
             taskbar-position = "LEFTPANEL_FIXEDCENTER";
+            window-preview-padding=0;
+          };
+
+          "org/gnome/shell/extensions/shelltile" = {
+            mouse-split-percent = true;
           };
 
           "org/gnome/shell/extensions/system-monitor" = {
@@ -96,7 +99,7 @@ let inherit (config.fnctl2) enable gui; in
             battery-hidesystem = false;
             compact-display = true;
             icon-display = false;
-            net-display = false;
+            net-display = true;
             net-show-text = true;
             freq-display = false;
             move-clock = false;
@@ -120,16 +123,19 @@ let inherit (config.fnctl2) enable gui; in
           "org/gnome/shell/extensions/topicons" = {
             icon-brightness = 0.0;
             icon-size = 16;
-            icon-spacing = 4;
+            icon-spacing = 1;
             tray-pos = "right";
             icon-saturation = 0.5;
             tray-order = 1;
+          };
+
+          "org/gnome/shell/extensions/user-theme"  =  {
+            name = gui.gnome.theme;
           };
         };
       };
 
       "dconf/db/local.d/30_keybinds" = {
-        mode = "0444";
         text = toDconf {
           "org/gnome/shell/keybindings"  =  {
             switch-to-application-1 = [];
@@ -146,8 +152,8 @@ let inherit (config.fnctl2) enable gui; in
         };
       };
 
-      "dconf/db/local.d/90_app_dconfeditor" = {
-        mode = "0444";
+
+      "dconf/db/local.d/80_app_dconfeditor" = {
         text = toDconf {
           "ca/desrt/dconf-editor" = {
             small-bookmarks-rows = true;
@@ -162,30 +168,31 @@ let inherit (config.fnctl2) enable gui; in
         };
       };
 
-      "dconf/db/local.d/90_app_seahorse" = {
-        mode = "0444";
+      "dconf/db/local.d/80_app_seahorse" = {
         text = toDconf {
-
           "apps/seahorse" = {
             server-auto-retrieve = true;
             server-publish-to = "hkp://pool.sks-keyservers.net";
           };
-
-          "apps/seahorse/listing" = {
-            sidebar-visible = false;
-          };
-
         };
       };
 
 
-      "dconf/db/local.d/99_unsorted" = {
-        mode = "0444";
+      "dconf/db/local.d/90_unsorted" = {
         text = toDconf {
+          "org/gnome/GPaste" = {
+            primary-to-history = true;
+            synchronize-clipboards = true;
+          };
 
           "org/gnome/settings-daemon/plugins/xsettings"  =  {
             antialiasing  =  "rgba";
             hinting  =  "medium";
+          };
+
+          "org/gnome/settings-daemon/peripherals/keyboard"  =  {
+            numlock-state = "on";
+            capslock-state = "off";
           };
 
           "org/gtk/settings/debug" = {
@@ -215,6 +222,7 @@ let inherit (config.fnctl2) enable gui; in
           "org/gnome/shell/overrides"  =  {
             workspaces-only-on-primary = false;
             attach-modal-dialogs = true;
+            edge-tiling = false;
           };
 
           "org/gnome/power-manager"  =  {
@@ -224,12 +232,15 @@ let inherit (config.fnctl2) enable gui; in
             info-page-number = 3;
           };
 
+          "org/gnome/desktop/a11y" = {
+            always-show-universal-access-status = false;
+          };
+
           "org/gnome/desktop/wm/preferences"  =  {
             titlebar-font = "Cantarell Bold 11";
             titlebar-uses-system-font = false;
             audible-bell = false;
-            visual-bell = true;
-            visual-bell-type = "frame-flash";
+            visual-bell = false;
             resize-with-right-button = true;
             action-middle-click-titlebar = "minimize";
             action-left-click-titlebar = "toggle-maximize";
@@ -264,16 +275,6 @@ let inherit (config.fnctl2) enable gui; in
             autorun-x-content-start-app = [];
           };
 
-          "org/gnome/desktop/notifications"  =  {
-            application-children = [
-              "gnome-network-panel"
-            ];
-          };
-
-          "org/gnome/desktop/notifications/application/gnome-network-panel"  =  {
-            application-id = "gnome-network-panel.desktop";
-          };
-
           "org/gnome/desktop/peripherals/touchpad"  =  {
             natural-scroll = false;
           };
@@ -283,12 +284,12 @@ let inherit (config.fnctl2) enable gui; in
             clock-format = "12h";
             gtk-theme = "Nordic";
             icon-theme = "Arc";
-            gtk-key-theme = "Emacs";
             cursor-theme = "Numix-Cursor";
             monospace-font-name = "FuraMono Nerd Font Mono 11";
             font-name = "Cantarell 11";
             document-font-name = "Cantarell 11";
             show-battery-percentage = true;
+            toolkit-accessibility = false;
           };
 
           "org/gnome/desktop/input-sources"  =  {
@@ -302,16 +303,6 @@ let inherit (config.fnctl2) enable gui; in
             ];
           };
 
-          "org/gnome/desktop/search-providers"  =  {
-            sort-order = [
-              "org.gnome.Contacts.desktop"
-              "org.gnome.Documents.desktop"
-              "org.gnome.Nautilus.desktop"
-            ];
-
-            disable-external = true;
-          };
-
           "org/gnome/nm-applet"  =  {
             suppress-wireless-networks-available = true;
           };
@@ -322,6 +313,9 @@ let inherit (config.fnctl2) enable gui; in
             sort-order = "ascending";
             sort-directories-first = false;
             location-mode = "filename-entry";
+            show-size-column = true;
+            date-format = "regular";
+            show-hidden = true;
           };
 
           "org/gnome/gnome-session"  =  {
@@ -333,6 +327,10 @@ let inherit (config.fnctl2) enable gui; in
           };
 
         };
+      };
+
+      "dconf/db/local.d/99_overrides"= {
+        text = toDconf gui.gnome.dconfOverrides;
       };
     };
   }; }

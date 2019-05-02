@@ -1,0 +1,11 @@
+--- a/extension.js	2019-04-29 20:15:53.545476711 -0400
++++ b/extension.js	2019-04-29 20:16:30.915269662 -0400
+@@ -26,7 +26,7 @@
+         button.set_child(icon);
+         button.connect("button-press-event", Lang.bind(bData,
+             function() {
+-                Util.spawn(["/bin/bash", "-c", this.command]);
++                Util.spawn(["/usr/bin/env", "sh", "-c", this.command]);
+             }
+         ));
+

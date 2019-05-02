@@ -4,20 +4,23 @@ let
   inherit (config.fnctl2) enable gui;
 
   gnomeExts = (with pkgs.gnomeExtensions; [
-    appindicator       /* app icons in top bar */
-    caffeine           /* Toggle screenlock for reading */
-    impatience         /* Speeds up animations. */
-    nohotcorner        /* Disable hotcorners on Shell */
-    dash-to-dock       /* OSX style dock. */
-    dash-to-panel      /* moves the dash to the gnome main panel */
-    system-monitor     /* shows system stats in bar */
-    topicons-plus      /*  moves legacy tray icons to the top panel. */
-    # tilingnome         /* Tiling Gnome features. */
-    # workspace-grid     /* more tiling options */
+    appindicator        /* app icons in top bar */
+    caffeine            /* Toggle screenlock for reading */
+    clipboard-indicator /* Adds a clipboard indicator to the top panel, and caches clipboard history. */
+    impatience          /* Speeds up animations. */
+    nohotcorner         /* Disable hotcorners on Shell */
+    dash-to-dock        /* OSX style dock. */
+    dash-to-panel       /* Moves the dash to the gnome main panel */
+    system-monitor      /* Shows system stats in bar */
+    topicons-plus       /* Moves legacy tray icons to the top panel. */
   ]);
 
   extraPkgs = (with pkgs; [
-    shelltile
+    custom-icons            /* Install custom icons to GNOME */
+    lockkeys                /* Numlock & Capslock status on the panel */
+    password-store          /* Access passwords from pass (passwordstore.org) from the gnome-shell */
+    shelltile               /* GNOME tiling manager */
+    top-bar-script-executor /* Add buttons to the top bar that execute commands */
   ]);
 
   gnomeApps = (with pkgs.gnome3; [
@@ -28,6 +31,7 @@ let
     gnome-themes-extra
     gnome-tweaks
     gnome-tweak-tool
+    networkmanager-openvpn
     polari        /* Modern IRC Client */
     sushi         /* Lightweight file previewer */
     totem         /* Movie player for Gnome based on GStreamer */
@@ -85,7 +89,11 @@ in
   environment.systemPackages = gnomeApps ++ gnomeExts ++ extraPkgs;
 
   nixpkgs.config.packageOverrides = pkgs: rec {
-    shelltile = pkgs.callPackage ./pkgs/shelltile.nix {};
+    custom-icons            = pkgs.callPackage ./pkgs/custom-icons.nix {};
+    lockkeys                = pkgs.callPackage ./pkgs/lockkeys.nix {};
+    password-store          = pkgs.callPackage ./pkgs/password-store.nix {};
+    shelltile               = pkgs.callPackage ./pkgs/shelltile.nix {};
+    top-bar-script-executor = pkgs.callPackage ./pkgs/top-bar-script-executor.nix {};
   };
 
   /* Don't install unnecessary gnome3 packages */
