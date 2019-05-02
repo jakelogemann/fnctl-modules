@@ -1,5 +1,5 @@
 { stdenv, fetchFromGitHub }:
-# TODO: In the future, this should probably migrate to 
+# TODO: In the future, this should probably migrate to
 #       gitlab.com/fnctl/nix/pkgs/overlay or perhaps nixpkgs!
 stdenv.mkDerivation rec {
   name = "gnome-shell-extension-shelltile-${version}";
@@ -23,6 +23,6 @@ stdenv.mkDerivation rec {
     description = "A tiling window extension for GNOME shell.";
     license = licenses.gpl2;
     maintainers = with maintainers; [ /* christinegraham */ jakelogemann ];
-    homepage = https://github.com/emasab/shelltile/tree/quicktiling;
+    homepage = "https://github.com/emasab/shelltile/tree/quicktiling";
   };
 }
