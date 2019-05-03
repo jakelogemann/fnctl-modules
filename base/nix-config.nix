@@ -4,8 +4,10 @@ lib.mkIf config.fnctl2.enable {
 
   # Links the /share directory inside of derivations
   # into /run/current-system/sw
-  environment.pathsToLink = ["/share"];
-
+  environment.pathsToLink = [
+    "/share"
+    "/share/zsh"
+  ];
 
   nixpkgs.config.allowUnfree = true;
 

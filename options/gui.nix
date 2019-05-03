@@ -94,8 +94,8 @@
 
     dconfOverrides = mkOption {
       description = "dconf settings to apply last, adding to or overriding defaults.";
-      default = null;
-      type = types.nullOr types.attrs;
+      default = {};
+      type = types.attrs;
     };
 
   }; /* </gnome> */

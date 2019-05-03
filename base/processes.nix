@@ -24,6 +24,6 @@
   # Automatically refills /dev/random with entropy.
   services.haveged.enable       = mkDefault true;
   services.tlp.enable           = mkDefault true;
-  services.geoip-updater.enable = mkDefault true;
+  services.geoip-updater.enable = mkDefault false;
 
 }; }
