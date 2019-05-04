@@ -42,7 +42,7 @@ let
 
   /* Packages w/ GLib Schemas */
   glibCompat = (with pkgs; [
-    baobab
+    baobab            # Graphical application to analyse disk usage in any GNOME environment
     liferea
 
   ]) ++ (with pkgs.gnome3; [

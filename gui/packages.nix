@@ -16,7 +16,7 @@ in { config = mkIf (enable && gui.enable) {
   environment.sessionVariables."TERM"   = gui.defaultApps.terminal;
 
   environment.systemPackages = with pkgs; [
-    arandr  /* Minimal X11 display conf tool */
+    arandr            # visual frontend for XRandR, monitor configuration tool
 
     /* Standard X Desktop Utils */
     unstable.appeditor         /* Allows editing XDG Menu Items */
@@ -32,20 +32,20 @@ in { config = mkIf (enable && gui.enable) {
     wmctrl
 
     /* Rofi & Friends */
-    dmenu
-    rofi
-    rofi-menugen
-    rofi-pass
-    rofi-systemd
+    dmenu             # Highly configurable menu
+    rofi              # Window switcher, app launcher, and dmenu replacement
+    rofi-menugen      # Generates menu based applications using rofi
+    rofi-pass         # A script to make rofi work with password-store
+    rofi-systemd      # Control your systemd units using rofi
 
     /* Terminal Emulator(s)
     * TODO: This should be parameterized. */
-    kitty         /* Modern & full-featured */
+    kitty             # Highly configurable terminal emulator
     alacritty     /* Modern, minimal & rust */
 
     /* Mail Reader(s)
     * TODO: This should be parameterized. */
-    thunderbird /* <3 Mozilla <3 */
+    thunderbird       # Mail and calendar application
 
     /* Instant Messaging Client(s)
     * TODO: This should be parameterized. */
