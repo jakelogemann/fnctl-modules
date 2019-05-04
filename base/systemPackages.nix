@@ -8,6 +8,6 @@ lib.mkIf config.fnctl2.enable {
 
   environment.systemPackages = with pkgs; [
     cacert
-
+    lshw
   ];
 }
