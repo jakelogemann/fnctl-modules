@@ -37,7 +37,6 @@ in {
       gds       = "git diff --staged";
       gdw       = "git diff --word-diff";
       gg        = "git grep";
-      ggl       = "git grep --line-number";
       gl        = "git log --oneline";
       glg       = "git log --graph";
       gll       = "git log --graph --topo-order --abbrev-commit --date=short --decorate --all --boundary --pretty=format:'%Cgreen%ad %Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue[%cn]%Creset %Cblue%G?%Creset'";
