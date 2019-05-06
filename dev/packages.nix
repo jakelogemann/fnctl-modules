@@ -24,11 +24,11 @@ in { config = mkIf (enable && dev.enable) {
     gnumake    # A tool to control the generation of non-source files from sources
     unstable.gitAndTools.lab   # GitLab CLI
     mkdocs     # Project documentation with Markdown
-    postman    # API Development Environment
 
   ]) ++ (optionals gui.enable (with pkgs; [
 
     # GUI dev tools
+    postman    # API Development Environment
     gource     # A Software verspuion control visualization tool
     zeal       # Docs Viewer (a la Dash on OS X)
 

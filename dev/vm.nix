@@ -15,12 +15,12 @@ in { config = mkIf (enable && dev.enable && dev.vm.enable) {
   };
 
   environment.systemPackages = (with pkgs; [
-    virtualbox         # Hypervisor for x86 virtualization
     kvm                # Kernel-based Virtual Machine
     vagrant            # tool for building complete dev environments
+  ]) ++ (optionals gui.enable (with pkgs; [
+    virtualbox         # Hypervisor for x86 virtualization
     virtmanager        # Desktop UI for managing virtual machines
     virtmanager-qt     # Desktop UI for managing virtual machines (QT)
-  ]) ++ (optionals gui.enable (with pkgs; [
     gnome3.gnome-boxes # Simple app to access remote or virtual systems
   ]));
 
