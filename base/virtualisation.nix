@@ -17,18 +17,18 @@
     };
 
     # Container Tools
-    environment.systemPackages = with pkgs; [ 
+    environment.systemPackages = with pkgs; [
       buildah   # OCI Image builder.
       podman    # OCI Container manager designed for k8s.
       skaffold  # Healthier alternative to Docker Compose.
     ];
 
     services.dockerRegistry = {
-      enable = true;
-      enableDelete = true;
+      enable               = true;
+      enableDelete         = true;
       enableGarbageCollect = true;
-      port = 5000;
-      listenAddress = "127.0.0.1";
+      port                 = 5000;
+      listenAddress        = "127.0.0.1";
     };
   };
 
