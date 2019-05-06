@@ -10,7 +10,7 @@ lib.mkIf config.fnctl2.enable {
   ];
 
   nixpkgs.config = {
-    allowUnfree        = lib.mkForce true;
+    allowUnfree        = true;
     packageOverrides   = pkgs: {
        unstable        = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) {
          config        = config.nixpkgs.config;
