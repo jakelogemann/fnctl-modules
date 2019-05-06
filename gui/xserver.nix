@@ -34,7 +34,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    arandr  /* Minimal X11 display conf tool */
+    arandr      /* Minimal X11 display conf tool */
     maim scrot  /* Minimal screenshot util */
 
     /* Standard X Desktop Utils */

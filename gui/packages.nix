@@ -16,88 +16,94 @@ in { config = mkIf (enable && gui.enable) {
   environment.sessionVariables."TERM"   = gui.defaultApps.terminal;
 
   environment.systemPackages = with pkgs; [
-    arandr            # visual frontend for XRandR, monitor configuration tool
+    arandr             # visual frontend for XRandR, monitor configuration tool
 
     /* Standard X Desktop Utils */
-    unstable.appeditor         /* Allows editing XDG Menu Items */
-    xdg_utils
-    xdg-user-dirs
-    slock
-    desktop-file-utils
-    xsel
-    xclip
-    glxinfo       /* OpenGL X11 Info tool */
-    xdo
-    xdotool
-    wmctrl
+    unstable.appeditor # Allows editing XDG Menu Items
+    xdg_utils          # A set of command line tools that assist applications with a variety of desktop integration tasks
+    xdg-user-dirs      # A tool to help manage well known user directories like the desktop folder and the music folder
+    slock              # Simple X display locker
+    desktop-file-utils # Command line utilities for working with .desktop files
+    xsel               # Command-line program for getting and setting the contents of the X selection
+    xclip              # Tool to access the X clipboard form a console application
+    glxinfo            # OpenGL X11 Info tool
+    xdo                # Small X utility to perform elementary actions on windows
+    xdotool            # Fake keyboard/mouse input, window management, and more
+    wmctrl             # Command line tool to interact with an EWMH/NetWM compatible X Window Manager
+    htop               # better than top for process introspection and manipulation
+    redshift           # Blue light filter
 
     /* Rofi & Friends */
-    dmenu             # Highly configurable menu
-    rofi              # Window switcher, app launcher, and dmenu replacement
-    rofi-menugen      # Generates menu based applications using rofi
-    rofi-pass         # A script to make rofi work with password-store
-    rofi-systemd      # Control your systemd units using rofi
+    dmenu              # Highly configurable menu
+    rofi               # Window switcher, app launcher, and dmenu replacement
+    rofi-menugen       # Generates menu based applications using rofi
+    rofi-pass          # A script to make rofi work with password-store
+    rofi-systemd       # Control your systemd units using rofi
 
     /* Terminal Emulator(s)
     * TODO: This should be parameterized. */
-    kitty             # Highly configurable terminal emulator
-    alacritty     /* Modern, minimal & rust */
+    kitty              # Highly configurable terminal emulator
+    alacritty          # Modern, minimal & rust
 
     /* Mail Reader(s)
     * TODO: This should be parameterized. */
-    thunderbird       # Mail and calendar application
+    thunderbird        # Mail and calendar application
 
     /* Instant Messaging Client(s)
     * TODO: This should be parameterized. */
-    (pidgin-with-plugins.override {
+    (pidgin-with-plugins.override { # Multi-protocol instant messaging client
       plugins = [
-        purple-plugin-pack
-        purple-hangouts
-        pidgin-otr
-        pidgin-window-merge
+        purple-plugin-pack   # Plugin pack for Pidgin 2.x
+        purple-hangouts      # Native Hangouts support for pidgin
+        pidgin-otr           # Plugin for Pidgin 2.x which implements OTR Messaging
+        pidgin-window-merge  # Pidgin plugin that merges the Buddy List window with a conversation window
       ];
     })
-    slack
-    signal-desktop
+    slack                    # Chat application
+    signal-desktop           # Private, simple, and sercure messenger
 
     /* Readers & Web Browser(s)
     TODO: This should be parameterized. */
-    firefox    /* <3 Mozilla <3 */
-    chromium   /* Google-free web browser */
-    zeal         /* Docs Viewer (a la Dash on OS X). */
-    liferea      /* RSS/Atom News Reader */
+    firefox                  # <3 Mozilla <3, interwebs browser
+    chromium                 # Open source Chrome interwebs browser
+    liferea                  # RSS/Atom News Reader */
 
     /* Peer to Peer Client(s)
     TODO: This should be parameterized. */
-    deluge
+    deluge                   # Torrent client
 
     /* Security related things...
     TODO: This should be parameterized. */
-    yubikey-personalization-gui
-    yubikey-manager-qt
-    nmap-graphical    /* nmap GTK GUI */
+    yubikey-personalization-gui # Facilitate reconfiguration of YubiKeys
+    yubikey-manager-qt          # Configure YubiKeys over all USB interfaces
+    yubico-piv-tool             # Interact with the Privilege and Identification Card app on a YubiKey
+    nmap-graphical              # nmap GTK GUI
 
     /* Office Productivity Suite(s)
     TODO: This should be parameterized. */
-    libreoffice-fresh
-    dia   # Diagram tool
+    libreoffice-fresh     # Open Source Productivity Suite
+    dia                   # Diagram tool
 
     /* Design Suite(s)
     TODO: This should be parameterized. */
-    gimp
-    blender
-    inkscape
+    gimp                  # Advanced image editing tools
+    blender               # 3D Creation/Animation/Publishing System
+    inkscape              # Vector graphics editor
 
-   /* Backup / Sync Tools
+    /* Backup / Sync Tools
     TODO: This should be parameterized. */
-    deja-dup
+    deja-dup              # Simple backup tool
 
-   /* EXPERIMENTAL
+    /* Networking */
+    networkmanagerapplet  # NetworkManager control applet for GNOME
+    wireshark-gtk         # Powerful network protocol analyzer
+
+    /* EXPERIMENTAL
     NOTE: These tools can be safely removed. They're not coupled to anything
           yet.
     TODO: This should be parameterized. */
-    aesop     /* Elementary-style PDF Viewer. */
-    bookworm  /* Elementary-style Ebook reader. */
+    aesop                 # Elementary-style PDF Viewer
+    bookworm              # Elementary-style Ebook reader
 
   ];
 

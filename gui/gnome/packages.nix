@@ -24,70 +24,71 @@ let
   ]);
 
   gnomeApps = (with pkgs.gnome3; [
-    cheese        /* Photobooth (webcam tester) */
-    dconf-editor  /* Advanced desktop config editor/viewer. */
-    gnome-backgrounds
-    gnome-themes-standard
-    gnome-themes-extra
-    gnome-tweaks
-    gnome-tweak-tool
-    networkmanager-openvpn
-    polari        /* Modern IRC Client */
-    sushi         /* Lightweight file previewer */
-    totem         /* Movie player for Gnome based on GStreamer */
-    vinagre       /* Remote desktop viewer */
-    vino          /* Remote desktop server */
-    zenity        /* graphical dialog prompts */
+    cheese                 # Photobooth (webcam tester)
+    dconf-editor           # Advanced desktop config editor/viewer.
+    gnome-backgrounds      # Background images for the GNOME desktop
+    gnome-mahjongg         # Dissemble a pile of tiles by removing matching pairs
+    gnome-mines            # Clear hidden mines from a minefield
+    gnome-sudoku           # Test logic skills in a number grid puzzle
+    gnome-themes-standard  # Adwaita and High Constrast themes
+    gnome-themes-extra     # Additional Adwaita-dark theme, icons, and index files
+    gnome-tweaks           # A tool to customize advanced GNOME 3 options
+    nautilus-sendto        # Integrates Evolution and Pidgin into the Nautilus file manager
+    networkmanager-openvpn # NetworkManager's OpenVPN plugin
+    pidgin-im-gnome-shell-extension # Make Pidgin IM conversations appear in the Gnome shell message tray
+    polari                 # Modern IRC Client
+    sushi                  # Lightweight file previewer
+    totem                  # Movie player for Gnome based on GStreamer
+    vinagre                # Remote desktop viewer
+    vino                   # Remote desktop server
+    zenity                 # graphical dialog prompts
   ]);
 
   /* Packages w/ GLib Schemas */
   glibCompat = (with pkgs; [
-    baobab            # Graphical application to analyse disk usage in any GNOME environment
-    liferea
+    baobab                 # Graphical application to analyse disk usage in any GNOME environment
+    liferea                # A GTK-based news feed aggregator
 
   ]) ++ (with pkgs.gnome3; [
-    cheese
-    dconf-editor
-    file-roller
-    gedit
-    gnome-calculator
-    gnome-characters
-    gnome-control-center
-    gnome-disk-utility
-    gnome-keyring
-    gnome-logs
-    gnome-nettool
-    gnome-online-accounts
-    gnome-power-manager
-    gnome-screenshot
-    gnome-settings-daemon
-    gnome-shell
-    gnome-shell-extensions
-    /* gnome-system-monitor  /* Marked Broken ? */
-    gnome-usage
-    gpaste
-    gtk3
-    gvfs
-    mutter
-    nautilus
-    polari
-    seahorse
-    totem
-    vinagre
-    vino
+    file-roller            # Archive manager
+    gedit                  # Official text editor of the GNOME desktop environment
+    gnome-calculator       # Default GNOME calculator
+    gnome-characters       # Simple utility app to find and insert unusual chars
+    gnome-control-center   # Utilities to configure the GNOME desktop
+    gnome-disk-utility     # A udisks graphical front-end
+    gnome-keyring          # Store secrets, passwords, keys, and certs, and make available to apps
+    gnome-logs             # Log viewer for the systemd journal
+    gnome-nettool          # Networking tools
+    gnome-online-accounts  # Single sign-on framwork for GNOME
+    gnome-power-manager    # View battery and power statistics provided by UPower
+    gnome-screenshot       # Take screenshots
+    gnome-settings-daemon  # Sets various params of the session and apps in a session
+    gnome-shell            # Core user interface
+    gnome-shell-extensions # Modify and extend GNOME Shell functionality and behavior
+    gnome-system-monitor   # Processor time, memory, and disk space utilization tool
+    gnome-usage            # View information about the use of system resources
+    gpaste                 # Clipboard management system with GNOME3 integration
+    gtk3                   # A multi-platform toolkit for creating graphical user interfaces
+    gvfs                   # Virtual Filesystem support library
+    mutter                 # Default window manager in GNOME 3 for Wayland and X11
+    nautilus               # The file manager for GNOME
+    seahorse               # Application for managing encryption keys and passwords in teh GnomeKeyring
   ]);
 
 in
 { config = mkIf (with config.fnctl2; enable && gui.enable) {
 
+  # Linux application sandboxing and distribution framework
   services.flatpak = {
     enable = true;
   };
 
+  # Attempt to make package settings editable with dConf
   services.xserver.desktopManager.gnome3.extraGSettingsOverridePackages = mkAfter glibCompat;
 
   environment.systemPackages = gnomeApps ++ gnomeExts ++ extraPkgs;
 
+  # Reference custom package derivations
   nixpkgs.config.packageOverrides = pkgs: rec {
     custom-icons            = pkgs.callPackage ./pkgs/custom-icons.nix {};
     lockkeys                = pkgs.callPackage ./pkgs/lockkeys.nix {};

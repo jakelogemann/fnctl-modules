@@ -9,7 +9,5 @@
   ./packages.nix
   ./xserver.nix
 
-];
-
-}
+]; }
 

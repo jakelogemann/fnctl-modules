@@ -11,7 +11,7 @@
     defaultFonts.serif     = ["FuraCode Nerd Font"];
   };
   fonts = with pkgs; [
-    nerdfonts
-    emojione
+    emojione              # emoji
+    nerdfonts             # patched developer targeted and/or used fonts as possible
   ];
 }; }
