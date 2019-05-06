@@ -9,7 +9,14 @@ lib.mkIf config.fnctl2.enable {
     "/share/zsh"
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree        = lib.mkForce true;
+    packageOverrides   = pkgs: {
+       unstable        = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) {
+         config        = config.nixpkgs.config;
+      };
+    };
+  };
 
   documentation = {
     enable      = true;
