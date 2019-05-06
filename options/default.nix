@@ -8,6 +8,7 @@
     ./networking.nix
     ./programs.nix
     ./gui.nix
+    ./dev.nix
   ];
 
 }
