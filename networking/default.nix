@@ -20,7 +20,6 @@
     dnsutils        # Bind DNS Server
     iputils         # A set of small useful utilities for Linux networking
     nettools        # A set of tools for controlling the network subsystem in Linux
-    tcpdump         # Network sniffer
     wirelesstools   # tools to manipulate wireless extensions
     wireguard-tools # Tools for WireGuard secure network tunnel
   ]);
