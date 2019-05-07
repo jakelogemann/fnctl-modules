@@ -96,7 +96,7 @@ in { config = mkIf (enable && gui.enable) {
 
     /* Networking */
     networkmanagerapplet  # NetworkManager control applet for GNOME
-    wireshark-gtk         # Powerful network protocol analyzer
+    wireshark-qt          # Powerful network protocol analyzer
 
     /* EXPERIMENTAL
     NOTE: These tools can be safely removed. They're not coupled to anything
