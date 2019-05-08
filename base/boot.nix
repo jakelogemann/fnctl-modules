@@ -35,6 +35,11 @@ let
 
     [ /* Filesystems */
       "btrfs"
+      "crc32c"       # for btrfs
+      "libcrc32c"    # for btrfs
+      "raid6_pq"     # for btrfs
+      "xor"          # for btrfs
+      "zlib_deflate" # for btrf"
       "ext3" "ext4"
       "fuse"
       "cifs"
@@ -81,6 +86,16 @@ in {
       checkJournalingFS      = false;
       availableKernelModules = staticModules;
       kernelModules          = staticModules;
+    };
+
+    services.btrfs = {
+      autoScrub.enable   = true;
+      autoScrub.interval = "daily";
+    };
+
+    services.fstrim = {
+      enable = true;
+      interval = "daily";
     };
 
     # Enable the Plymouth splash screen

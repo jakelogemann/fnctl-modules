@@ -1,13 +1,9 @@
-{ config, lib, pkgs, ... }:
-
-let
-  inherit (lib) mkDefault;
-
-in {
+{ config, lib, pkgs, ... }: with lib;
+{ config = mkIf config.fnctl2.enable {
   boot.kernel.sysctl = {
 
-    # Increase max socket connections to 100k (default 128).
-    "net.core.somaxconn"            = mkDefault 100000;
+    # increase max socket connections to 100k (default 128).
+    "net.core.somaxconn"            = mkdefault 100000;
 
     # Increase network receive queues
     "net.core.netdev_max_backlog"   = mkDefault 5000;  # Default: 1000
@@ -94,4 +90,4 @@ in {
     "fs.inotify.max_user_instances" = 1024;
     "fs.inotify.max_queued_events"  = 32768;
   };
-}
+}; }

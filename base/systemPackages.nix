@@ -3,6 +3,7 @@
 lib.mkIf config.fnctl2.enable {
 
   environment.systemPackages = (with pkgs; [
+    btrfsProgs  # btrfs fileystem tools
     cacert    # A bundle of X.509 certificates of public Certificate Authorities (CA)
     coreutils # The basic file, shell and text manipulation utilities of the GNU operating system
     findutils # GNU Find Utilities, the basic directory searching utilities of the GNU operating system
@@ -21,13 +22,13 @@ lib.mkIf config.fnctl2.enable {
     pciutils  # A collection of programs for inspecting and manipulating configuration of PCI devices
     pstree    # Shows processes
     ranger    # File system navigation tool
-    ripgrep   # Utility that combines the usability of The Silver Searcher with the speed of grep
     readline  # Library for interactive line editing
+    ripgrep   # Utility that combines the usability of The Silver Searcher with the speed of grep
+    thefuck   # Magnificent app which corrects your previous console command
     tpm-tools # Trusted process module tools
     tree      # Command to produce a depth indented directory listing
-    usbutils  # Tools for working with USB devices, such as lsusb
     unzip     # An extraction utility for archives compressed in .zip format
+    usbutils  # Tools for working with USB devices, such as lsusb
     which     # command to locate the executable file associated with the given command
-    thefuck   # Magnificent app which corrects your previous console command
   ]);
 }
