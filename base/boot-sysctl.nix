@@ -3,7 +3,7 @@
   boot.kernel.sysctl = {
 
     # increase max socket connections to 100k (default 128).
-    "net.core.somaxconn"            = mkdefault 100000;
+    "net.core.somaxconn"            = mkDefault 100000;
 
     # Increase network receive queues
     "net.core.netdev_max_backlog"   = mkDefault 5000;  # Default: 1000
