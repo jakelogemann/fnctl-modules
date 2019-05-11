@@ -11,7 +11,6 @@ lib.mkIf config.fnctl2.enable {
     gnugrep   # GNU implementation of the Unix grep command
     gnused    # GNU sed, a batch stream editor
     gnutar    # GNU implementation of the `tar' archiver
-    gparted   # Drive partitioning tool
     gzip      # GNU zip compression program
     hwinfo    # Hardware detection tool
     lshw      # Pretty, indented hardware info
