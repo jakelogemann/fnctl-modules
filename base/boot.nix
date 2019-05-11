@@ -89,7 +89,6 @@ in {
     };
 
     services.btrfs = {
-      autoScrub.enable   = true;
       autoScrub.interval = "daily";
     };
 
