@@ -17,7 +17,7 @@ in with lib; {
     boot.initrd.network.ssh.enable = true;
 
     ## Enable OpenSSH Server Access.
-    services.openssh = {
+    services.openssh = mkForce {
       enable                 = true;
       openFirewall           = true;
 
