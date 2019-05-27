@@ -11,7 +11,7 @@ let
     nohotcorner         /* Disable hotcorners on Shell */
     dash-to-dock        /* OSX style dock. */
     dash-to-panel       /* Moves the dash to the gnome main panel */
-    system-monitor      /* Shows system stats in bar */
+    # system-monitor      /* Shows system stats in bar */
     topicons-plus       /* Moves legacy tray icons to the top panel. */
   ]);
 
@@ -64,7 +64,7 @@ let
     gnome-screenshot       # Take screenshots
     gnome-settings-daemon  # Sets various params of the session and apps in a session
     gnome-shell            # Core user interface
-    gnome-shell-extensions # Modify and extend GNOME Shell functionality and behavior
+    # gnome-shell-extensions # Modify and extend GNOME Shell functionality and behavior
     gnome-system-monitor   # Processor time, memory, and disk space utilization tool
     gnome-usage            # View information about the use of system resources
     gpaste                 # Clipboard management system with GNOME3 integration
