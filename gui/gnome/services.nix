@@ -17,7 +17,7 @@ let
     nohotcorner         /* Disable hotcorners on Shell */
     dash-to-dock        /* OSX style dock. */
     dash-to-panel       /* moves the dash to the gnome main panel */
-    system-monitor      /* shows system stats in bar */
+    # system-monitor      /* shows system stats in bar */
     topicons-plus       /* moves legacy tray icons to the top panel. */
   ]);
 
