@@ -12,8 +12,6 @@ let
     extraPython3Packages = (pyPkgs: with pyPkgs; [
 
     ]);
-    configure.customRC = ''
-    '';
   };
 
   EDITOR = "${neovimPkg}/bin/nvim";
