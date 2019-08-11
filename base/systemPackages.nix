@@ -15,7 +15,6 @@ lib.mkIf config.fnctl2.enable {
     hwinfo    # Hardware detection tool
     lshw      # Pretty, indented hardware info
     lsof      # A tool to list open files
-    nix-du    # A tool to determine which gc-roots take space in your nix store
     openssl   # A cryptographic library that implements the SSL and TLS protocols
     pass      # Stores, retrieves, generates, and synchronizes passwords securely
     pciutils  # A collection of programs for inspecting and manipulating configuration of PCI devices
