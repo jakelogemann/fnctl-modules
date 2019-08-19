@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 let 
   charSet = "en_US.utf8"; 
-  ls = "${pkgs.lsd}/bin/lsd";
   rg = "${pkgs.ripgrep}/bin/rg";
 
 in { 
@@ -9,8 +8,8 @@ in {
   config.environment = lib.mkIf config.fnctl2.enable {
 
     variables = {
-      EDITOR = lib.mkDefault "vim";
-      PAGER = lib.mkDefault "less";
+      EDITOR =  "vim";
+      PAGER =  "less";
     };
 
     /* extra commands run at the start of every new shell. */
@@ -22,13 +21,13 @@ in {
 
     /* extra aliases passed to each new shell. */
     shellAliases = {
-      l       = "${ls} -lah";
-      la      = "${ls} -a";
-      ll      = "${ls} -l";
-      lla     = "${ls} -la";
-      ls      = "${ls}";
-      lsa     = "${ls} -lah";
-      lt      = "${ls} --tree";
+      l       = "ls -lah";
+      la      = "ls -a";
+      ll      = "ls -l";
+      lla     = "ls -la";
+      ls      = "ls";
+      lsa     = "ls -lah";
+      lt      = "ls --tree";
       rg-nix  = "${rg} -Lit nix -C4";
     };
   };

@@ -24,8 +24,9 @@ in {
     shellAliases = {
       g         = "git";
       ga        = "git add";
+      gaddp     = "git add --patch";
       gamend    = "git commit --amend --no-edit";
-      gammendit = "git commit --amend --edit";
+      gamendit  = "git commit --amend --edit";
       gb        = "git branch";
       gbnm      = "git branch --no-merged";
       gci       = "git commit";
@@ -41,14 +42,14 @@ in {
       glg       = "git log --graph";
       gll       = "git log --graph --topo-order --abbrev-commit --date=short --decorate --all --boundary --pretty=format:'%Cgreen%ad %Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue[%cn]%Creset %Cblue%G?%Creset'";
       glog      = "git log";
-      gpl       = "git pull --rebase";
+      gpl       = "git pull --rebase --autostash";
       gps       = "git push";
       gpst      = "git push --tags";
-      grb       = "git rebase -i";
-      grm       = "git rm";
-      grmc      = "git rm --cached";
+      grb       = "git rebase --autostash --rerere-autoupdate";
+      grm       = "git rm -r";
+      grmc      = "git rm -r --cached --ignore-unmatch";
       grs       = "git reset --";
-      gs        = "git status -sb";
+      gs        = "git status --short --branch --find-renames --untracked-files";
       gst       = "git stash";
       gt        = "git tag";
     };
