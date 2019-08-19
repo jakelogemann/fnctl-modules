@@ -21,12 +21,10 @@ in {
 
     /* extra aliases passed to each new shell. */
     shellAliases = {
-      l       = "ls -lah";
-      la      = "ls -a";
-      ll      = "ls -l";
-      lla     = "ls -la";
+      l       = "ls -Qv1 --almost-all";
+      la      = "ls -Qltukh --almost-all";
+      ll      = "ls -Qlkh --almost-all";
       ls      = "ls";
-      lsa     = "ls -lah";
       lt      = "ls --tree";
       rg-nix  = "${rg} -Lit nix -C4";
     };
