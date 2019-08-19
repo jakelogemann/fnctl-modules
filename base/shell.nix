@@ -35,11 +35,11 @@ in {
 
     environment = {
 
-      /* these serve to overwrite the official NixOS defaults while still
-      allowing configuration downstream (thus no lib.mkForce). */
       variables = {
-        LANG    = charSet;
-        LC_ALL  = charSet;
+        LANG    = lib.mkForce charSet;
+        LC_ALL  = lib.mkForce charSet;
+        /* these serve to overwrite the official NixOS defaults while still
+        allowing configuration downstream (thus no lib.mkForce). */
         EDITOR  = "vim";
         PAGER   = "less";
       };
