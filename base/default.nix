@@ -8,6 +8,7 @@
     ./nix-config.nix
     ./processes.nix
     ./ssh.nix
+    ./shell.nix
     ./systemPackages.nix
     ./virtualisation.nix
   ];
