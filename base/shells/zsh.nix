@@ -45,7 +45,7 @@
 
     ohMyZsh = {
       enable     = true;
-      theme      = "agnoster";
+      theme      = "miloshadzic";
       customPkgs = with pkgs; [
         nix-zsh-completions
       ];
