@@ -1,6 +1,7 @@
 { config, lib, options, pkgs, ... }: {
 
   imports = [
+    ./shells
     ./boot-sysctl.nix
     ./boot.nix
     ./hardware.nix
