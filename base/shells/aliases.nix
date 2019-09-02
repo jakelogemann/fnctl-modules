@@ -23,7 +23,6 @@
   gps       = "git push";
   gpst      = "git push --tags";
   grb       = "git rebase -i";
-  grep      = "grep  --color                                       = auto --exclude-dir                         = {.bzr,CVS,.git,.hg,.svn}";
   grm       = "git rm";
   grmc      = "git rm --cached";
   grs       = "git reset --";
