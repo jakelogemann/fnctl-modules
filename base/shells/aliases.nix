@@ -1,6 +1,19 @@
-{ config, pkgs, lib, ... }: { 
+{ config, pkgs, lib, ... }: 
+let
+  ls = "ls";
+  rg = "${pkgs.ripgrep}/bin/rg";
 
-  mkdir     = "mkdir -pv";
+in { 
+
+  mkdir     = "mkdir -pv"; /* Adds extra output to mkdir. */
+  l         = "${ls} -lah";
+  la        = "${ls} -a";
+  ll        = "${ls} -l";
+  lla       = "${ls} -la";
+  ls        = "${ls}";
+  lsa       = "${ls} -lah";
+  lt        = "${ls} --tree";
+  rg-nix    = "${rg} -Lit nix -C4";
   ga        = "git add";
   gamend    = "git commit --amend --no-edit";
   gammendit = "git commit --amend --edit";
