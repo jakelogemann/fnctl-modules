@@ -8,6 +8,8 @@
     ./networking.nix
     ./programs.nix
     ./gui.nix
+    ./gui_i3wm.nix
+    ./gui_gnome.nix
     ./dev.nix
   ];
 

@@ -5,6 +5,12 @@ rec {
   boolToString = v: (if v then "true" else "false");
   isTuple = v: ((builtins.match ".*([\(].+[\)]).*" (toString v)) != null);
 
+  isEnabled = config: builtins.all (x: x) (with config.fnctl2; [
+    enable 
+    gui.enable
+    gui.gnome.enable
+  ]);
+
   setAttrsToVal = val: attrNames:
     listToAttrs (map (li: nameValuePair li val) attrNames);
 
