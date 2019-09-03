@@ -5,6 +5,10 @@
     enableCompletion = true;
     shellAliases     = (import ./aliases.nix {inherit config pkgs lib;});
 
+    shellInit = concatStringsSep "\n" [
+      "eval \"$(${pkgs.direnv}/bin/direnv hook bash)\""
+    ];
+
     interactiveShellInit = concatStringsSep "\n" [
       "[[ \"$TERM\" != \"xterm-kitty\" ]] || export TERM=\"xterm-256color\""
       "export PATH=\"$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$PATH\""
