@@ -6,9 +6,9 @@ let
 in { 
 
   mkdir     = "mkdir -pv"; /* Adds extra output to mkdir. */
-  l         = "${ls} -lah";
-  la        = "${ls} -a";
-  ll        = "${ls} -l";
+  l         = "${ls} -Qv1 --almost-all";
+  la        = "${ls} -Qltukh --almost-all";
+  ll        = "${ls} -Qlkh --almost-all";
   lla       = "${ls} -la";
   ls        = "${ls}";
   lsa       = "${ls} -lah";

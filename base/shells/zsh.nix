@@ -37,6 +37,7 @@
     enableGlobalCompInit = true;
 
     interactiveShellInit = concatStringsSep "\n" [
+      "[[ \"$TERM\" != \"xterm-kitty\" ]] || export TERM=\"xterm-256color\""
       "path+=( $HOME/.cargo/bin $HOME/.local/bin $HOME/bin )"
       "function source_if_exists(){ test ! -e $1 || source $1 ;}"
       "source_if_exists $HOME/.zshrc.local"
