@@ -7,6 +7,11 @@
     keystroke = true;
   };
 
+  /* Allows smartcards (yubikeys). */
+  hardware.u2f.enable = mkForce true;
+  services.pcscd.enable = mkForce true;
+
+  /* enable desktop config bus (dconf) */
   programs.dconf.enable = true;
 
 }; }

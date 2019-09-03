@@ -1,13 +1,13 @@
-{ config, lib, options, pkgs, ... }:
-
-lib.mkIf config.fnctl2.enable {
-
+{ config, lib, options, pkgs, ... }: with lib;
+{ config = mkIf config.fnctl2.enable {
   # Links the /share directory inside of derivations
   # into /run/current-system/sw
   environment.pathsToLink = [
     "/share"
     "/share/zsh"
   ];
+
+  system.autoUpgrade = mkForce { enable  = false; };
 
   nixpkgs.config = {
     allowUnfree        = true;
@@ -56,12 +56,13 @@ lib.mkIf config.fnctl2.enable {
     trustedUsers = [ "root" ];
 
     extraOptions = ''
-      plugin-files = ${extra-builtins-lib}
       extra-builtins-file = ${../extraBuiltins/default.nix}
-      gc-keep-outputs = true
-      tarball-ttl = 86400
       gc-keep-derivations = true
+      gc-keep-outputs = true
+      keep-derivations = true
+      keep-outputs = true
+      plugin-files = ${extra-builtins-lib}
+      tarball-ttl = 86400
     '';
   };
-
-}
+}; }
