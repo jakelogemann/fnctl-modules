@@ -7,7 +7,7 @@ let
     lockkeys                /* Numlock & Capslock status on the panel */
     password-store          /* Access passwords from pass (passwordstore.org) from the gnome-shell */
     shelltile               /* Tiling support for GNOME */
-    top-bar-script-executor /* Add buttons to the top bar that execute commands */
+    # top-bar-script-executor /* Add buttons to the top bar that execute commands */
 
   ]) ++ (with pkgs.gnomeExtensions; [
     appindicator        /* app icons in top bar */
