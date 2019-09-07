@@ -7,7 +7,7 @@
     ./app-folders.nix
   ];
 
-  config = mkIf (with config.fnctl2; enable && gui.enable) {
+  config = mkIf (with config.fnctl2; gui.enable && gui.gnome.enable) {
 
     gtk.iconCache.enable = mkDefault true;
 

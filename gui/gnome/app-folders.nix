@@ -236,7 +236,7 @@ let
   makeAppFolders' = attrSet: mapAttrs' makeAppFolder' attrSet;
 
 in {
-  config.environment.etc = mkIf (enable && gui.enable) {
+  config.environment.etc = mkIf (with config.fnctl2; gui.enable && gui.gnome.enable) {
     "dconf/db/local.d/50_app_folders" = {
       mode = "0444";
       text = toDconf ({

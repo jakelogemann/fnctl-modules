@@ -3,7 +3,7 @@ with lib;
 with import ./_helpers.nix { inherit pkgs lib; };
 
 let inherit (config.fnctl2) enable gui; in
-{ config = mkIf (enable && gui.enable) {
+{ config = mkIf (with config.fnctl2; gui.enable && gui.gnome.enable) {
 
     # Default theme(?)
     environment.systemPackages = with pkgs; [ nordic numix-cursor-theme arc-icon-theme ];

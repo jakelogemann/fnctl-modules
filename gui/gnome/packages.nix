@@ -76,7 +76,7 @@ let
   ]);
 
 in
-{ config = mkIf (with config.fnctl2; enable && gui.enable) {
+{ config = mkIf (with config.fnctl2; gui.enable && gui.gnome.enable) {
 
   # Linux application sandboxing and distribution framework
   services.flatpak = {

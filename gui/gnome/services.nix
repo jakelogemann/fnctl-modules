@@ -22,7 +22,7 @@ let
   ]);
 
 in
-{ config = mkIf (enable && gui.enable) {
+{ config = mkIf (with config.fnctl2; gui.enable && gui.gnome.enable) {
 
   services = {
     /* Disables Gnome's package installer (broken?). */
