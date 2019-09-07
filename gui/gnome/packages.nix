@@ -20,7 +20,7 @@ let
     lockkeys                /* Numlock & Capslock status on the panel */
     password-store          /* Access passwords from pass (passwordstore.org) from the gnome-shell */
     shelltile               /* GNOME tiling manager */
-    top-bar-script-executor /* Add buttons to the top bar that execute commands */
+    # top-bar-script-executor /* Add buttons to the top bar that execute commands */
   ]);
 
   gnomeApps = (with pkgs.gnome3; [
@@ -94,7 +94,7 @@ in
     lockkeys                = pkgs.callPackage ./pkgs/lockkeys.nix {};
     password-store          = pkgs.callPackage ./pkgs/password-store.nix {};
     shelltile               = pkgs.callPackage ./pkgs/shelltile.nix {};
-    top-bar-script-executor = pkgs.callPackage ./pkgs/top-bar-script-executor.nix {};
+    # top-bar-script-executor = pkgs.callPackage ./pkgs/top-bar-script-executor.nix {};
   };
 
   /* Don't install unnecessary gnome3 packages */
