@@ -46,7 +46,7 @@ with {
     fpath = "nixos.nix";
     fetchArgs = {
       ref = "main";
-      url = https://github.com/lgmn-io/nixpkgs-overlay.git";
+      url = https://github.com/lgmn-io/fnctl-overlay.git";
     };
   })
 
