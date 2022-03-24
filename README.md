@@ -36,8 +36,8 @@ with {
     name  = "fnctl-nix-functions";
     fpath = "nixos.nix";
     fetchArgs = {
-      ref = "master";
-      url = "ssh://git@gitlab.com/fnctl/nix/functions.git";
+      ref = "main";
+      url = "https://github.com/lgmn-io/nix-functions.git";
     };
   })
 
@@ -45,8 +45,8 @@ with {
     name  = "fnctl-nix-overlay";
     fpath = "nixos.nix";
     fetchArgs = {
-      ref = "master";
-      url = "ssh://git@gitlab.com/fnctl/nix/pkgs/overlay.git";
+      ref = "main";
+      url = https://github.com/lgmn-io/nixpkgs-overlay.git";
     };
   })
 
@@ -55,7 +55,7 @@ with {
     fpath = "default.nix";
     fetchArgs = {
       ref = "unstable";
-      url = "ssh://git@gitlab.com/fnctl/nix/modules.git";
+      url = "https://github.com/lgmn-io/fnctl-modules.git";
     };
   }) 
 
